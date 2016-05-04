@@ -17,7 +17,6 @@ import Settings from './components/Settings';
 import Stuff from './components/Stuff';
 import reducers from './reducers';
 import styles from './styles/index.css';
-import './actions';
 
 
 // Needed for onTouchTap
