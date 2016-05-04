@@ -6,7 +6,7 @@ var CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: __dirname + "/app/main.js",
+    app: __dirname + "/app/main.jsx",
     vendor: ['react', 'react-dom']
   },
   output: {
