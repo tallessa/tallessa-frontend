@@ -5,7 +5,19 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: {
     app: __dirname + "/app/main.js",
-    vendor: ['react', 'react-dom']
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'react-tap-event-plugin',
+      'redux',
+      'redux-logger',
+      'redux-promise',
+      'redux-thunk',
+      'material-ui',
+    ]
   },
   output: {
     path: __dirname + "/build",

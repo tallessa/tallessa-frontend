@@ -12,6 +12,7 @@ import App from './components/App';
 import Dashboard from './components/Dashboard';
 import Loans from './components/Loans';
 import Places from './components/Places';
+import Settings from './components/Settings';
 import Stuff from './components/Stuff';
 import reducers from './reducers';
 import styles from './styles/index.css';
@@ -46,6 +47,7 @@ ReactDOM.render(
         <Route path="stuff" component={Stuff} />
         <Route path="places" component={Places} />
         <Route path="loans" component={Loans} />
+        <Route path="settings" component={Settings} />
       </Route>
     </Router>
   </Provider>,

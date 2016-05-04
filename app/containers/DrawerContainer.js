@@ -1,6 +1,7 @@
-import { connect } from 'react-redux';
-import { toggleDrawer } from '../actions';
+import {connect} from 'react-redux';
+import {toggleDrawer} from '../actions';
 
+import {signOut} from '../actions';
 import Drawer from '../components/Drawer';
 
 
@@ -11,7 +12,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
+  return {
+    signOut: () => dispatch(signOut()),
+  };
 }
 
 const DrawerContainer = connect(

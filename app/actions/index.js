@@ -22,5 +22,12 @@ export function addPlace() {
 export function addLoan() {
   return {
     type: 'ADD_LOAN',
-  }
+  };
+}
+
+
+export function signOut() {
+  return {
+    type: 'SIGN_OUT',
+  };
 }
