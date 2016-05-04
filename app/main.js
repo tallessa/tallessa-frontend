@@ -1,12 +1,13 @@
 import createLogger from 'redux-logger';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import promise from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import { IndexRoute, Router, Route, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {IndexRoute, Router, Route, browserHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 import App from './components/App';
 import Dashboard from './components/Dashboard';
@@ -18,8 +19,6 @@ import reducers from './reducers';
 import styles from './styles/index.css';
 import './actions';
 
-
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -33,10 +32,8 @@ const
   store = createStore(
     reducers,
     applyMiddleware(thunk, promise, logger)
-  );
-
-
-const history = syncHistoryWithStore(browserHistory, store);
+  ),
+  history = syncHistoryWithStore(browserHistory, store);
 
 
 ReactDOM.render(
