@@ -28,14 +28,14 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
 
     {/* Add place */}
     <FloatingActionButton
-      mini={true}
+      mini
       backgroundColor={colors.places}
       onClick={onAddPlaceClick}
       style={
         // XXX It feels very wrong to use margin inside flexbox.
-        {
-          marginBottom: '10px',
-        }
+      {
+        marginBottom: '10px',
+      }
       }
     >
       {icons.places}
@@ -43,14 +43,14 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
 
     {/* Add loan */}
     <FloatingActionButton
-      mini={true}
+      mini
       onClick={onAddLoanClick}
       backgroundColor={colors.loans}
       style={
         // XXX It feels very wrong to use margin inside flexbox.
-        {
-          marginBottom: '10px',
-        }
+      {
+        marginBottom: '10px',
+      }
       }
     >
       {icons.loans}
@@ -63,7 +63,7 @@ SpeedDial.propTypes = {
   onAddPlaceClick: PropTypes.func,
   onAddStuffClick: PropTypes.func,
   onAddLoanClick: PropTypes.func,
-}
+};
 
 
 export default SpeedDial;

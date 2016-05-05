@@ -4,17 +4,12 @@ import { toggleDrawer } from '../actions';
 import Header from '../components/Header';
 
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    navigationOpen: state.elements.navigation,
-  }
-}
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onLeftButtonClick: () => dispatch(toggleDrawer())
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onLeftButtonClick: () => dispatch(toggleDrawer()),
+});
+
 
 const NavigationContainer = connect(
   mapStateToProps,

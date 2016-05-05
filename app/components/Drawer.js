@@ -75,7 +75,7 @@ const Drawer = ({isOpen, signOut}) => (
 
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  signOut: PropTypes.func.isRequired
+  signOut: PropTypes.func.isRequired,
 };
 
 

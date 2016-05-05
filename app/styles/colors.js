@@ -5,7 +5,7 @@ const colors = {
   stuff: pink500,
   places: cyan500,
   loans: green500,
-}
+};
 
 
 export default colors;

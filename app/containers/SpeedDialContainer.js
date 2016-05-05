@@ -4,17 +4,14 @@ import {addStuff, addPlace, addLoan} from '../actions';
 import SpeedDial from '../components/SpeedDial';
 
 
-const mapStateToProps = (state, ownProps) => {
-  return {};
-}
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onAddStuffClick: () => dispatch(addStuff()),
-    onAddPlaceClick: () => dispatch(addPlace()),
-    onAddLoanClick: () => dispatch(addLoan()),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onAddStuffClick: () => dispatch(addStuff()),
+  onAddPlaceClick: () => dispatch(addPlace()),
+  onAddLoanClick: () => dispatch(addLoan()),
+});
+
 
 const NavigationContainer = connect(
   mapStateToProps,
