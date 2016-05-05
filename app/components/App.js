@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
-import SpeedDial from '../components/SpeedDial';
-import HeaderContainer from '../containers/HeaderContainer';
 import DrawerContainer from '../containers/DrawerContainer';
+import HeaderContainer from '../containers/HeaderContainer';
+import MainViewContainer from '../containers/MainViewContainer';
+import SpeedDial from '../components/SpeedDial';
 import SpeedDialContainer from '../containers/SpeedDialContainer';
 
 
@@ -12,7 +13,7 @@ const App = ({children}) => {
     <div>
       <HeaderContainer />
       <DrawerContainer />
-      {children}
+      <MainViewContainer>{children}</MainViewContainer>
       <SpeedDialContainer />
     </div>
   );

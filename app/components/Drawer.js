@@ -11,6 +11,8 @@ import colors from '../styles/colors';
 import icons from '../styles/icons';
 
 
+const leftBorder = color => ({borderLeft: `4px solid ${color}`});
+
 const Drawer = ({isOpen, signOut}) => (
   <LeftNav
     open={isOpen}
@@ -31,9 +33,7 @@ const Drawer = ({isOpen, signOut}) => (
     <MenuItem
       rightIcon={icons.stuff}
       onClick={go('/stuff')}
-      style={{
-        borderLeft: `4px solid ${colors.stuff}`,
-      }}
+      style={leftBorder(colors.stuff)}
     >
       Stuff
     </MenuItem>
@@ -41,9 +41,7 @@ const Drawer = ({isOpen, signOut}) => (
     <MenuItem
       rightIcon={icons.places}
       onClick={go('/places')}
-      style={{
-        borderLeft: `4px solid ${colors.places}`,
-      }}
+      style={leftBorder(colors.places)}
     >
       Places
     </MenuItem>
@@ -51,9 +49,7 @@ const Drawer = ({isOpen, signOut}) => (
     <MenuItem
       rightIcon={icons.loans}
       onClick={go('/loans')}
-      style={{
-        borderLeft: `4px solid ${colors.loans}`,
-      }}
+      style={leftBorder(colors.loans)}
     >
       Loans
     </MenuItem>
