@@ -7,14 +7,13 @@ import DashboardIcon from 'material-ui/lib/svg-icons/action/dashboard';
 import SettingsIcon from 'material-ui/lib/svg-icons/action/settings';
 import PowerSettingsNewIcon from 'material-ui/lib/svg-icons/action/power-settings-new';
 
-import go from '../helpers/go';
 import colors from '../styles/colors';
 import icons from '../styles/icons';
 import {signOut} from '../actions';
 import DrawerItem from './DrawerItem';
 
 
-const Drawer = ({isOpen, signOut}) => (
+const Drawer = ({isOpen, onSignOutClick}) => (
   <LeftNav
     open={isOpen}
     style={{
@@ -23,46 +22,46 @@ const Drawer = ({isOpen, signOut}) => (
     }}
   >
     <DrawerItem
-      path='/'
+      path="/"
       icon={<DashboardIcon />}
-      title='Dashboard'
+      title="Dashboard"
       strictMatch
     />
 
     <Divider />
 
     <DrawerItem
-      path='/stuff'
+      path="/stuff"
       icon={icons.stuff}
       color={colors.stuff}
-      title='Stuff'
+      title="Stuff"
     />
 
     <DrawerItem
-      path='/places'
+      path="/places"
       icon={icons.places}
       color={colors.places}
-      title='Places'
+      title="Places"
     />
 
     <DrawerItem
-      path='/loans'
+      path="/loans"
       icon={icons.loans}
       color={colors.loans}
-      title='Loans'
+      title="Loans"
     />
 
     <Divider />
 
     <DrawerItem
-      path='/settings'
+      path="/settings"
       icon={<SettingsIcon />}
-      title='Settings'
+      title="Settings"
     />
 
     <MenuItem
       rightIcon={<PowerSettingsNewIcon />}
-      onClick={signOut}
+      onClick={onSignOutClick}
     >
       Sign out
     </MenuItem>
@@ -72,7 +71,7 @@ const Drawer = ({isOpen, signOut}) => (
 
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  signOut: PropTypes.func.isRequired,
+  onSignOutClick: PropTypes.func.isRequired,
 };
 
 
@@ -81,7 +80,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signOut: () => dispatch(signOut()),
+  onSignOutClick: () => dispatch(signOut()),
 });
 
 

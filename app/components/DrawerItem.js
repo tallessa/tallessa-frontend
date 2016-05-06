@@ -5,8 +5,8 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import go from '../helpers/go';
 
 
-const DrawerItem = ({path, icon, color, title, currentPath, strictMatch=false}) => {
-  const isActive = strictMatch ? (currentPath === path) : (currentPath.indexOf(path) == 0);
+const DrawerItem = ({path, icon, color, title, currentPath, strictMatch = false}) => {
+  const isActive = strictMatch ? (currentPath === path) : (currentPath.indexOf(path) === 0);
 
   return (
     <MenuItem
@@ -30,11 +30,11 @@ DrawerItem.propTypes = {
   title: PropTypes.string,
   strictMatch: PropTypes.bool,
   currentPath: PropTypes.string.isRequired,
-}
+};
 
 
-const mapStateToProps = (state, ownProps) => ({
-  ...ownProps,
+// TODO ObjectRestSpread
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isOpen: state.elements.drawer,
   currentPath: state.routing.locationBeforeTransitions.pathname,
 });

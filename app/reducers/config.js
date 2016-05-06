@@ -1,7 +1,7 @@
 const initialState = {
   pending: true,
   team: {},
-  user: {}
+  user: {},
 };
 
 

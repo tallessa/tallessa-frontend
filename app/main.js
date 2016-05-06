@@ -1,5 +1,3 @@
-'use strict';
-
 import 'isomorphic-fetch';
 
 import createLogger from 'redux-logger';
