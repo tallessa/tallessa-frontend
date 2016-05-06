@@ -35,7 +35,7 @@ DrawerItem.propTypes = {
 
 // TODO ObjectRestSpread
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isOpen: state.elements.drawer,
+  isOpen: state.ui.drawer,
   currentPath: state.routing.locationBeforeTransitions.pathname,
 });
 

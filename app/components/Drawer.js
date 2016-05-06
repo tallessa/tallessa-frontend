@@ -76,7 +76,7 @@ Drawer.propTypes = {
 
 
 const mapStateToProps = state => ({
-  isOpen: state.elements.drawer,
+  isOpen: state.ui.drawer,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import elements from './elements';
+import ui from './ui';
 import config from './config';
+import currentView from './currentView';
 
 
 const reducers = combineReducers({
-  elements,
+  ui,
   config,
+  currentView,
   routing: routerReducer,
 });
 

@@ -2,19 +2,21 @@ import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
 import React, {PropTypes} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {blue500} from 'material-ui/lib/styles/colors';
 
-import { toggleDrawer } from '../actions';
+import {toggleDrawer} from '../actions';
+import Breadcrumb from './Breadcrumb';
 
 
-const Header = ({onLeftButtonClick}) => (
+const defaultAppBarColor = blue500;
+
+
+const Header = ({onLeftButtonClick, currentViewColor}) => (
   <AppBar
-    title={
-      <div style={{lineHeight: '55px'}}>Tallessa<sup style={{fontSize: '13px'}}>BETA</sup></div>
-    }
+    title={<Breadcrumb />}
     style={{
-      backgroundColor: blue500,
+      backgroundColor: currentViewColor ? currentViewColor : defaultAppBarColor,
     }}
     iconElementLeft={
       <IconButton onClick={onLeftButtonClick}>
@@ -27,10 +29,13 @@ const Header = ({onLeftButtonClick}) => (
 
 Header.propTypes = {
   onLeftButtonClick: PropTypes.func.isRequired,
+  currentViewColor: PropTypes.string,
 };
 
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  currentViewColor: state.currentView.color,
+});
 
 const mapDispatchToProps = dispatch => ({
   onLeftButtonClick: () => dispatch(toggleDrawer()),
