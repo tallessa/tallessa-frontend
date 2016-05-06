@@ -1,49 +1,46 @@
-# Webpack + React project template
+# Tallessa – Effortless Asset Management
 
-Based on [Pro React, Appendix A: Webpack for React](http://www.pro-react.com/materials/appendixA/).
+<!-- [![Build Status](https://travis-ci.org/tallessa/tallessa-frontend.svg?branch=master)](https://travis-ci.org/tallessa/tallessa-frontend) -->
 
-## What it does
+## Responsive Web Frontend
 
-* ECMAScript 2015
-* Optimized, minified, compressed production builds
-* Hot module reloading
-* End-to-end tests
+## Requirements
 
-## Project structure
-
-* `app/` – Front-end source code (ES2015/JSX, CSS)
-* `build/` – Built files
-* `spec/` – Jasmine tests
+* Node.js 6.x
 
 ## Getting started
 
-### Get code and install dependencies
-
-    git clone git@github.com:leonidas/webpack-react-project-template
+    git clone git@github.com:tallessa/tallessa-frontend
+    cd tallessa-frontend
     npm install
-
-### Run development server
-
     npm start
-    open http://localhost:8080
+    iexplore http://localhost:8080
 
-### Run tests
+## Coding conventions
 
-    npm install -g webdriver-manager
-    webdriver-manager update
-    webdriver-manager start
+Coding conventions are enforced via `eslint`. We deviate from [Airbnb](https://github.com/airbnb/javascript) in the following points:
 
-    npm start
+* Contents of a single line object literal are not space-wrapped: `{foo: 5}`
+* It's OK to define multiple `let`s or `const`s in a single statement as long as you indent this way:
 
-    npm test
+    const
+      a = 5,
+      b = 6;
 
-### Production build
+## License
 
-    npm run build
+    Tallessa – Effortless Asset Management (API backend)
+    Copyright © 2016 Santtu Pajukanta
 
-## TODO
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-* Add a server and proxy some endpoints to it
-* Start the required server components from `npm test`
-* Redux
-* Clean old files from `build/`
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
