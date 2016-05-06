@@ -11,9 +11,8 @@ import go from '../helpers/go';
 import colors from '../styles/colors';
 import icons from '../styles/icons';
 import {signOut} from '../actions';
+import DrawerItem from './DrawerItem';
 
-
-const leftBorder = color => ({borderLeft: `4px solid ${color}`});
 
 const Drawer = ({isOpen, signOut}) => (
   <LeftNav
@@ -23,47 +22,43 @@ const Drawer = ({isOpen, signOut}) => (
       top: '64px',
     }}
   >
-    <MenuItem
-      rightIcon={<DashboardIcon />}
-      onClick={go('/')}
-    >
-      Dashboard
-    </MenuItem>
+    <DrawerItem
+      path='/'
+      icon={<DashboardIcon />}
+      title='Dashboard'
+      strictMatch
+    />
 
     <Divider />
 
-    <MenuItem
-      rightIcon={icons.stuff}
-      onClick={go('/stuff')}
-      style={leftBorder(colors.stuff)}
-    >
-      Stuff
-    </MenuItem>
+    <DrawerItem
+      path='/stuff'
+      icon={icons.stuff}
+      color={colors.stuff}
+      title='Stuff'
+    />
 
-    <MenuItem
-      rightIcon={icons.places}
-      onClick={go('/places')}
-      style={leftBorder(colors.places)}
-    >
-      Places
-    </MenuItem>
+    <DrawerItem
+      path='/places'
+      icon={icons.places}
+      color={colors.places}
+      title='Places'
+    />
 
-    <MenuItem
-      rightIcon={icons.loans}
-      onClick={go('/loans')}
-      style={leftBorder(colors.loans)}
-    >
-      Loans
-    </MenuItem>
+    <DrawerItem
+      path='/loans'
+      icon={icons.loans}
+      color={colors.loans}
+      title='Loans'
+    />
 
     <Divider />
 
-    <MenuItem
-      rightIcon={<SettingsIcon />}
-      onClick={go('/settings')}
-    >
-      Settings
-    </MenuItem>
+    <DrawerItem
+      path='/settings'
+      icon={<SettingsIcon />}
+      title='Settings'
+    />
 
     <MenuItem
       rightIcon={<PowerSettingsNewIcon />}
