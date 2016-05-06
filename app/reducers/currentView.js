@@ -1,5 +1,4 @@
 import {LOCATION_CHANGE} from 'react-router-redux';
-import {combineReducers} from 'redux';
 
 import colors from '../styles/colors';
 
@@ -26,6 +25,11 @@ const
       viewTitle: 'Loans',
       color: colors.loans,
     },
+    {
+      prefix: '/settings',
+      viewTitle: 'Settings',
+      color: null,
+    },
   ];
 
 
@@ -38,8 +42,7 @@ export default function currentView(state, action) {
     {pathname} = payload;
 
   for (const view of knownViews) {
-    const {prefix, viewTitle} = view;
-    if (pathname.indexOf(prefix) === 0) return view;
+    if (pathname.indexOf(view.prefix) === 0) return view;
   }
 
   return unknownView;

@@ -16,7 +16,7 @@ const Header = ({onLeftButtonClick, currentViewColor}) => (
   <AppBar
     title={<Breadcrumb />}
     style={{
-      backgroundColor: currentViewColor ? currentViewColor : defaultAppBarColor,
+      backgroundColor: currentViewColor || defaultAppBarColor,
     }}
     iconElementLeft={
       <IconButton onClick={onLeftButtonClick}>
