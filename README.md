@@ -23,10 +23,11 @@ Coding conventions are enforced via `eslint`. We deviate from [Airbnb](https://g
 * Contents of a single line object literal are not space-wrapped: `{foo: 5}`
 * It's OK to define multiple `let`s or `const`s in a single statement as long as you indent this way:
 
-
-    const
-      a = 5,
-      b = 6;
+```javascript
+const
+  a = 5,
+  b = 6;
+```
 
 ## License
 
