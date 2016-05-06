@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
 
 
@@ -18,4 +19,15 @@ MainView.propTypes = {
 };
 
 
-export default MainView;
+const mapStateToProps = (state, ownProps) => ({
+  isDrawerOpen: state.elements.drawer,
+  children: ownProps.children,
+});
+
+const mapDispatchToProps = () => ({});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainView);

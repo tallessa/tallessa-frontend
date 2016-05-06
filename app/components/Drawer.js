@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
 import LeftNav from 'material-ui/lib/left-nav';
 import MenuItem from 'material-ui/lib/menus/menu-item';
@@ -9,6 +10,7 @@ import PowerSettingsNewIcon from 'material-ui/lib/svg-icons/action/power-setting
 import go from '../helpers/go';
 import colors from '../styles/colors';
 import icons from '../styles/icons';
+import {signOut} from '../actions';
 
 
 const leftBorder = color => ({borderLeft: `4px solid ${color}`});
@@ -79,4 +81,16 @@ Drawer.propTypes = {
 };
 
 
-export default Drawer;
+const mapStateToProps = state => ({
+  isOpen: state.elements.drawer,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signOut: () => dispatch(signOut()),
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Drawer);

@@ -1,17 +1,17 @@
 import React, {PropTypes} from 'react';
 
-import DrawerContainer from '../containers/DrawerContainer';
-import HeaderContainer from '../containers/HeaderContainer';
-import MainViewContainer from '../containers/MainViewContainer';
-import SpeedDialContainer from '../containers/SpeedDialContainer';
+import Drawer from '../components/Drawer';
+import Header from '../components/Header';
+import MainView from '../components/MainView';
+import SpeedDial from '../components/SpeedDial';
 
 
 const App = ({children}) => (
   <div>
-    <HeaderContainer />
-    <DrawerContainer />
-    <MainViewContainer>{children}</MainViewContainer>
-    <SpeedDialContainer />
+    <Header />
+    <Drawer />
+    <MainView>{children}</MainView>
+    <SpeedDial />
   </div>
 );
 
