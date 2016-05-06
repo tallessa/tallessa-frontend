@@ -6,6 +6,8 @@ module.exports = {
   entry: {
     app: __dirname + "/app/main.js",
     vendor: [
+      'material-ui',
+      'promise-props',
       'react',
       'react-dom',
       'react-redux',
@@ -16,7 +18,6 @@ module.exports = {
       'redux-logger',
       'redux-promise',
       'redux-thunk',
-      'material-ui',
     ]
   },
   output: {
@@ -47,6 +48,11 @@ module.exports = {
     colors: true,
     historyApiFallback: true,
     inline: true,
-    hot: true
-  }
+    hot: true,
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:8000',
+      },
+    },
+  },
 }

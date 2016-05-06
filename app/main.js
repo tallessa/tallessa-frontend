@@ -1,3 +1,7 @@
+'use strict';
+
+import 'isomorphic-fetch';
+
 import createLogger from 'redux-logger';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import promise from 'redux-promise';
@@ -17,6 +21,7 @@ import Settings from './components/Settings';
 import Stuff from './components/Stuff';
 import reducers from './reducers';
 import './styles/index.css';
+import {getConfig} from './actions';
 
 
 // Needed for onTouchTap
@@ -33,6 +38,9 @@ const
     applyMiddleware(thunk, promise, logger)
   ),
   history = syncHistoryWithStore(browserHistory, store);
+
+
+store.dispatch(getConfig());
 
 
 ReactDOM.render(

@@ -8,6 +8,8 @@ module.exports = {
   entry: {
     app: __dirname + "/app/main.jsx",
     vendor: [
+      'material-ui',
+      'promise-props',
       'react',
       'react-dom',
       'react-redux',
@@ -18,7 +20,6 @@ module.exports = {
       'redux-logger',
       'redux-promise',
       'redux-thunk',
-      'material-ui',
     ],
   },
   output: {
