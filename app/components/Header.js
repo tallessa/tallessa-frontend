@@ -7,7 +7,8 @@ import {blue500} from 'material-ui/lib/styles/colors';
 
 import {toggleDrawer} from '../actions';
 import Breadcrumb from './Breadcrumb';
-import Gravatar from './Gravatar';
+import UserAvatar from './UserAvatar';
+import TeamAvatar from './TeamAvatar';
 
 
 const defaultAppBarColor = blue500;
@@ -24,7 +25,12 @@ const Header = ({onLeftButtonClick, currentViewColor}) => (
         <MenuIcon />
       </IconButton>
     }
-    iconElementRight={<Gravatar />}
+    iconElementRight={
+      <div>
+        <TeamAvatar />
+        <UserAvatar />
+      </div>
+    }
   />
 );
 
