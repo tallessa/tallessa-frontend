@@ -31,7 +31,7 @@ const
 
 ## License
 
-    Tallessa – Effortless Asset Management (API backend)
+    Tallessa – Effortless Asset Management (Responsive Web Frontend)
     Copyright © 2016 Santtu Pajukanta
 
     This program is free software: you can redistribute it and/or modify
