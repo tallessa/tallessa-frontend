@@ -25,7 +25,7 @@ module.exports = {
     ],
   },
   output: {
-    path: __dirname + "/build",
+    path: __dirname + "/dist",
     filename: "[name]-[hash].js"
   },
 
