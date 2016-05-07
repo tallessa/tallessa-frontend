@@ -1,6 +1,6 @@
 # Tallessa – Effortless Asset Management
 
-<!-- [![Build Status](https://travis-ci.org/tallessa/tallessa-frontend.svg?branch=master)](https://travis-ci.org/tallessa/tallessa-frontend) -->
+[![Build Status](https://travis-ci.org/tallessa/tallessa-frontend.svg?branch=master)](https://travis-ci.org/tallessa/tallessa-frontend)
 
 ## Responsive Web Frontend
 
