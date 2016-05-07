@@ -47,6 +47,7 @@
     "jasmine-es6": "^0.1.4",
     "json-loader": "^0.5.4",
     "material-ui": "^0.14.4",
+    "node-zopfli": "^1.4.0",
     "postcss-loader": "^0.8.0",
     "promise-props": "^1.0.0",
     "react": "^0.14.8",

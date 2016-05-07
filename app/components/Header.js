@@ -7,6 +7,9 @@ import IconButton from 'material-ui/lib/icon-button';
 import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
 import {blue500} from 'material-ui/lib/styles/colors';
 
+import config from '../config';
+import TeamAvatar from './TeamAvatar';
+import UserAvatar from './UserAvatar';
 import {toggleDrawer} from '../actions';
 import Breadcrumb from './Breadcrumb';
 import Gravatar from './Gravatar';
@@ -50,6 +53,37 @@ export default class Header extends Component {
   }
 }
 
+@connect(mapStateToProps, { toggleDrawer })
+export default class Header extends Component {
+  static propTypes = {
+    // would use these to document public 'API' for <Header>
+    // onLeftButtonClick: PropTypes.func.isRequired,
+    // currentViewColor: PropTypes.string,
+  };
+
+  @autobind
+  onClick() {
+    this.props.toggleDrawer();
+  }
+
+  render() {
+    const { currentViewColor } = this.props;
+    return (
+      <AppBar
+        title={<Breadcrumb />}
+        style={{
+          backgroundColor: currentViewColor
+        }}
+        iconElementLeft={
+          <IconButton onClick={this.onClick}>
+            <MenuIcon />
+          </IconButton>
+        }
+        iconElementRight={<Gravatar />}
+      />
+    );
+  }
+}
 
 // const Header = ({onLeftButtonClick, currentViewColor}) => (
 //   <AppBar

@@ -7,6 +7,8 @@ module.exports = {
   entry: {
     app: __dirname + '/app/main.js',
     vendor: [
+      'blueimp-md5',
+      'isomorphic-fetch',
       'material-ui',
       'promise-props',
       'react',
@@ -27,8 +29,13 @@ module.exports = {
   },
 
   output: {
+<<<<<<< HEAD
     path: __dirname + '/build',
     filename: 'bundle.js'
+=======
+    path: __dirname + "/dist",
+    filename: "bundle.js"
+>>>>>>> 6ff75b9c5f10e47ad4ff68d60a0d6ab2f1f45bc4
   },
 
   module: {
