@@ -16,7 +16,7 @@ const PictureAvatar = ({src}) => (
   >
     <Avatar src={src} />
   </Paper>
-)
+);
 
 
 PictureAvatar.propTypes = {
@@ -37,7 +37,7 @@ const LetterAvatar = ({letter}) => (
   >
     <Avatar>{letter}</Avatar>
   </Paper>
-)
+);
 
 
 LetterAvatar.propTypes = {
@@ -46,7 +46,9 @@ LetterAvatar.propTypes = {
 };
 
 
-const PaperAvatar = ({src, letter}) => src ? <PictureAvatar src={src} /> : <LetterAvatar letter={letter} />;
+const PaperAvatar = ({src, letter}) => (
+  src ? <PictureAvatar src={src} /> : <LetterAvatar letter={letter} />
+);
 
 PaperAvatar.propTypes = {
   src: PropTypes.string,
