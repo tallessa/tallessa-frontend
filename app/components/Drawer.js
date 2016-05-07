@@ -17,8 +17,7 @@ const Drawer = ({isOpen, onSignOutClick}) => (
   <LeftNav
     open={isOpen}
     style={{
-      position: 'absolute',
-      top: '64px',
+      marginTop: 64,
     }}
   >
     <DrawerItem
