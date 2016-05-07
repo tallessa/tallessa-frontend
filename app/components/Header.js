@@ -5,18 +5,18 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {blue500} from 'material-ui/lib/styles/colors';
 
-import {toggleDrawer} from '../actions';
-import Breadcrumb from './Breadcrumb';
-import UserAvatar from './UserAvatar';
+import config from '../config';
 import TeamAvatar from './TeamAvatar';
+import UserAvatar from './UserAvatar';
+import {toggleDrawer} from '../actions';
 
 
 const defaultAppBarColor = blue500;
 
 
-const Header = ({onLeftButtonClick, currentViewColor}) => (
+const Header = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
   <AppBar
-    title={<Breadcrumb />}
+    title={currentViewTitle || config.app.name}
     style={{
       backgroundColor: currentViewColor || defaultAppBarColor,
     }}
@@ -38,11 +38,13 @@ const Header = ({onLeftButtonClick, currentViewColor}) => (
 Header.propTypes = {
   onLeftButtonClick: PropTypes.func.isRequired,
   currentViewColor: PropTypes.string,
+  currentViewTitle: PropTypes.string,
 };
 
 
 const mapStateToProps = state => ({
   currentViewColor: state.currentView.color,
+  currentViewTitle: state.currentView.viewTitle,
 });
 
 const mapDispatchToProps = dispatch => ({

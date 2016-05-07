@@ -6,8 +6,10 @@ var CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: __dirname + "/app/main.jsx",
+    app: __dirname + "/app/main.js",
     vendor: [
+      'blueimp-md5',
+      'isomorphic-fetch',
       'material-ui',
       'promise-props',
       'react',
