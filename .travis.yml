@@ -1,6 +1,13 @@
 language: node_js
 node_js:
   - "6.1"
+before_install:
+  - sudo apt-get install python-software-properties
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update
+  - sudo apt-get install gcc-5 g++-5
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+  - sudo update-alternatives --set gcc /usr/bin/gcc-5
 install:
   - npm install
 env:
@@ -8,4 +15,5 @@ env:
     - NODE_ENV=development
     - NODE_ENV=production
 script:
-  - npm run build
+  - webpack --config webpack.config.js
+  - webpack --config webpack.production.config.js
