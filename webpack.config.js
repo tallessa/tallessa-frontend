@@ -1,5 +1,9 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  CompressionPlugin = require("compression-webpack-plugin"),
+  env = process.env.NODE_ENV || 'development';
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -39,6 +43,9 @@ module.exports = {
   ],
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': `"${env}"`,
+    }),
     new HtmlWebpackPlugin({
       template: __dirname + "/app/index.tmpl.html"
     }),

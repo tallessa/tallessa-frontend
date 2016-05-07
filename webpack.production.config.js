@@ -1,7 +1,9 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CompressionPlugin = require("compression-webpack-plugin");
+const
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  CompressionPlugin = require("compression-webpack-plugin"),
+  env = process.env.NODE_ENV || 'production'
 
 
 module.exports = {
@@ -51,6 +53,9 @@ module.exports = {
   ],
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': `"${env}"`,
+    }),
     new HtmlWebpackPlugin({
       template: __dirname + "/app/index.tmpl.html"
     }),
