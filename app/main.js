@@ -1,26 +1,16 @@
 import 'isomorphic-fetch';
 
-import createLogger from 'redux-logger';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import promise from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import {createStore, applyMiddleware} from 'redux';
-import {IndexRoute, Router, Route, browserHistory} from 'react-router';
-import {Provider} from 'react-redux';
-import {syncHistoryWithStore} from 'react-router-redux';
+import { Provider } from 'react-redux';
+import { ReduxAsyncConnect } from 'redux-async-connect';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import App from './components/App';
-import Dashboard from './components/Dashboard';
-import Loans from './components/Loans';
-import Places from './components/Places';
-import Settings from './components/Settings';
-import Stuff from './components/Stuff';
-import reducers from './reducers';
-import './styles/index.css';
-import {getConfig} from './actions';
-
+import httpClient from './http';
+import createStore from './store';
+import getRoutes from './routes';
 
 // Needed for onTouchTap
 // Can go away when react 1.0 release
@@ -28,30 +18,32 @@ import {getConfig} from './actions';
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
+const client = httpClient();
+const store = createStore(browserHistory, client, {});
 
-const
-  logger = createLogger(),
-  store = createStore(
-    reducers,
-    applyMiddleware(thunk, promise, logger)
-  ),
-  history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
+// won't be needed since can't use immutable in root state
+// , {
+//   selectLocationState: (state) => state.routing.toJS()
+// });
 
-store.dispatch(getConfig());
+const renderAsyncConnect = (props) =>
+  <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />;
 
+let DevTool = <div />;
+if (__DEVELOPMENT__ && !window.devToolsExtension) {
+  DevTool = require('./DevTool'); // eslint-disable-line global-require
+}
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
-        <Route path="stuff" component={Stuff} />
-        <Route path="places" component={Places} />
-        <Route path="loans" component={Loans} />
-        <Route path="settings" component={Settings} />
-      </Route>
-    </Router>
+    <div>
+      <Router render={renderAsyncConnect} history={history}>
+        {getRoutes(store)}
+      </Router>
+      {DevTool}
+    </div>
   </Provider>,
   document.getElementById('root')
 );

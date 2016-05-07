@@ -3,8 +3,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
+
   entry: {
-    app: __dirname + "/app/main.js",
+    app: __dirname + '/app/main.js',
     vendor: [
       'blueimp-md5',
       'isomorphic-fetch',
@@ -22,6 +23,11 @@ module.exports = {
       'redux-thunk',
     ]
   },
+
+  resolve: {
+    root: __dirname + '/app'
+  },
+
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js"
@@ -29,21 +35,26 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.json$/, loader: "json" },
+      { test: /\.json$/, loader: 'json' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.css$/, loader: 'style!css?modules!postcss' }
     ]
   },
+
   postcss: [
     require('autoprefixer')
   ],
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: __dirname + "/app/index.tmpl.html"
+      template: __dirname + '/app/index.tmpl.html'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js'),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true
+    })
   ],
 
   devServer: {

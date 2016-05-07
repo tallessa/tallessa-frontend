@@ -1,7 +1,19 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "rules": {
+    "react/jsx-quotes": 0,
+    "jsx-quotes": [2, "prefer-single"],
     "object-curly-spacing": "off",
-    "one-var": "off"
+    "one-var": "off",
+    "react/jsx-no-bind": 1,
+    "comma-dangle": [2, "never"]
+  },
+  "plugins": [
+    "react"
+  ],
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "__DEVTOOLS__": true
   }
 }
