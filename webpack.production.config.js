@@ -21,9 +21,7 @@ module.exports = {
       'react-router-redux',
       'react-tap-event-plugin',
       'redux',
-      'redux-logger',
       'redux-promise',
-      'redux-thunk',
     ],
   },
   output: {

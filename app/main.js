@@ -1,12 +1,8 @@
 import 'isomorphic-fetch';
 
-import createLogger from 'redux-logger';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import promise from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import {createStore, applyMiddleware} from 'redux';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
@@ -20,6 +16,7 @@ import Stuff from './components/Stuff';
 import reducers from './reducers';
 import './styles/index.css';
 import {getConfig} from './actions';
+import initializeStore from './store';
 
 
 // Needed for onTouchTap
@@ -30,11 +27,7 @@ injectTapEventPlugin();
 
 
 const
-  logger = createLogger(),
-  store = createStore(
-    reducers,
-    applyMiddleware(thunk, promise, logger)
-  ),
+  store = initializeStore(),
   history = syncHistoryWithStore(browserHistory, store);
 
 
