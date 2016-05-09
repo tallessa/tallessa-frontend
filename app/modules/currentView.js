@@ -1,16 +1,18 @@
 import {LOCATION_CHANGE} from 'react-router-redux';
+import Immutable from 'immutable';
+import {createReducer} from 'redux-immutablejs';
 
 import colors from '../styles/colors';
 
 
 const
-  unknownView = {
+  unknownView = Immutable.fromJS({
     prefix: null,
     viewTitle: null,
     color: null,
     strictMatch: false,
-  },
-  knownViews = [
+  }),
+  knownViews = Immutable.fromJS([
     {
       prefix: '/',
       viewTitle: 'Dashboard',
@@ -41,21 +43,22 @@ const
       color: null,
       strictMatch: false,
     },
-  ];
+  ]);
 
 
-export default function currentView(state, action) {
-  if (typeof state === 'undefined') return unknownView;
-  if (action.type !== LOCATION_CHANGE) return state;
+export default createReducer(unknownView, {
+  [LOCATION_CHANGE]: (state, action) => {
+    const
+      {payload} = action,
+      {pathname} = payload;
 
-  const
-    {payload} = action,
-    {pathname} = payload;
-
-  for (const view of knownViews) {
-    if (pathname === view.prefix) return view;
-    if (!view.strictMatch && pathname.indexOf(view.prefix) === 0) return view;
-  }
-
-  return unknownView;
-}
+    return knownViews.find(
+      view => {
+        if (pathname === view.get('prefix')) return true;
+        return !view.get('strictMatch') && pathname.indexOf(view.get('prefix')) === 0;
+      },
+      undefined,
+      unknownView
+    );
+  },
+});

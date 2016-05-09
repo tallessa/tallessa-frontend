@@ -4,7 +4,7 @@ import FloatingActionButton from 'material-ui/lib/floating-action-button';
 
 import colors from '../styles/colors';
 import icons from '../styles/icons';
-import {addStuff, addPlace, addLoan} from '../actions';
+
 
 // TODO Tooltips https://github.com/callemall/material-ui/issues/2230
 
@@ -71,9 +71,9 @@ SpeedDial.propTypes = {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  onAddStuffClick: () => dispatch(addStuff()),
-  onAddPlaceClick: () => dispatch(addPlace()),
-  onAddLoanClick: () => dispatch(addLoan()),
+  // onAddStuffClick: () => dispatch(addStuff()),
+  // onAddPlaceClick: () => dispatch(addPlace()),
+  // onAddLoanClick: () => dispatch(addLoan()),
 });
 
 

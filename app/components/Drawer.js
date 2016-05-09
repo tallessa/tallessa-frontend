@@ -9,7 +9,7 @@ import PowerSettingsNewIcon from 'material-ui/lib/svg-icons/action/power-setting
 
 import colors from '../styles/colors';
 import icons from '../styles/icons';
-import {signOut} from '../actions';
+import {signOut} from '../modules/ui';
 import DrawerItem from './DrawerItem';
 
 
@@ -75,7 +75,7 @@ Drawer.propTypes = {
 
 
 const mapStateToProps = state => ({
-  isOpen: state.ui.drawer,
+  isOpen: state.getIn(['ui', 'drawer']),
 });
 
 const mapDispatchToProps = dispatch => ({

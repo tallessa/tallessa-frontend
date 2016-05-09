@@ -20,7 +20,7 @@ MainView.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  isDrawerOpen: state.ui.drawer,
+  isDrawerOpen: state.getIn(['ui', 'drawer']),
   children: ownProps.children,
 });
 

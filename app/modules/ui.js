@@ -1,0 +1,23 @@
+import {combineReducers, createReducer} from 'redux-immutablejs';
+
+
+const
+  SIGN_OUT = 'tallessa/ui/SIGN_OUT',
+  TOGGLE_DRAWER = 'tallessa/ui/TOGGLE_DRAWER';
+
+
+const drawer = createReducer(true, {
+  [TOGGLE_DRAWER]: state => !state,
+});
+
+
+export default combineReducers({
+  drawer,
+});
+
+
+export function toggleDrawer() {
+  return {
+    type: TOGGLE_DRAWER,
+  };
+}

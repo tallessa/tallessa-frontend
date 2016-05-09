@@ -13,9 +13,8 @@ import Loans from './components/Loans';
 import Places from './components/Places';
 import Settings from './components/Settings';
 import Stuff from './components/Stuff';
-import reducers from './reducers';
 import './styles/index.css';
-import {getConfig} from './actions';
+import {getConfig} from './modules/config';
 import initializeStore from './store';
 
 
@@ -28,7 +27,10 @@ injectTapEventPlugin();
 
 const
   store = initializeStore(),
-  history = syncHistoryWithStore(browserHistory, store);
+  history = syncHistoryWithStore(browserHistory, store, {
+    // TODO RemoveReactRouterRedux
+    selectLocationState: (state) => state.get('routing').toJS(),
+  });
 
 
 store.dispatch(getConfig());

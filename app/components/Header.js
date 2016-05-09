@@ -8,7 +8,7 @@ import {blue500} from 'material-ui/lib/styles/colors';
 import config from '../config';
 import TeamAvatar from './TeamAvatar';
 import UserAvatar from './UserAvatar';
-import {toggleDrawer} from '../actions';
+import {toggleDrawer} from '../modules/ui';
 
 
 const defaultAppBarColor = blue500;
@@ -43,8 +43,8 @@ Header.propTypes = {
 
 
 const mapStateToProps = state => ({
-  currentViewColor: state.currentView.color,
-  currentViewTitle: state.currentView.viewTitle,
+  currentViewColor: state.getIn(['currentView', 'color']),
+  currentViewTitle: state.getIn(['currentView', 'viewTitle']),
 });
 
 const mapDispatchToProps = dispatch => ({
