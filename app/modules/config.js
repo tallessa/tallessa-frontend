@@ -26,10 +26,7 @@ function getCurrentUser() {
 
 
 export default createReducer(initialState, {
-  [GET_CONFIG]: (state, action) => {
-    console.log('action', action)
-    return Immutable.fromJS(action.payload);
-  }
+  [GET_CONFIG]: (state, action) => Immutable.fromJS(action.payload),
 });
 
 
@@ -37,7 +34,7 @@ export function getConfig() {
   return {
     type: GET_CONFIG,
     payload: promiseProps({
-      // pending: false,
+      pending: false,
       user: getCurrentUser(),
       team: getCurrentTeam(),
     }),
