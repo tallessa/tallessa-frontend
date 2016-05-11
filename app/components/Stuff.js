@@ -1,9 +1,22 @@
 import React from 'react';
+import {asyncConnect} from 'redux-async-connect';
+import {connect} from 'react-redux';
+
+import {getStuff} from '../modules/stuff';
 
 
-const Stuff = () => (
-  <div>Stuff</div>
-);
-
-
-export default Stuff;
+@asyncConnect([{
+  key: 'asyncStuff',
+  promise: ({store}) => store.dispatch(getStuff()),
+}])
+@connect(
+  (state) => ({
+    syncStuff: state.tallessa.get('stuff'),
+  })
+)
+export default class Stuff extends React.Component {
+  render() {
+    console.log(this.props);
+    return <div>Stuff</div>;
+  }
+}

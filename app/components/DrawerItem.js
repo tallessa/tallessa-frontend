@@ -35,8 +35,8 @@ DrawerItem.propTypes = {
 
 // TODO ObjectRestSpread
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isOpen: state.getIn(['ui', 'drawer']),
-  currentPath: state.getIn(['routing', 'locationBeforeTransitions', 'pathname']),
+  isOpen: state.tallessa.getIn(['ui', 'drawer']),
+  currentPath: state.routing.locationBeforeTransitions.pathname,
 });
 
 const mapDispatchToProps = () => ({});

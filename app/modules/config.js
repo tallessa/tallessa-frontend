@@ -11,7 +11,7 @@ const
   GET_CONFIG_FAILURE = 'tallessa/config/GET_CONFIG_FAILURE';
 
 const initialState = Immutable.fromJS({
-  pending: true,
+  loaded: false,
   team: {},
   user: {},
 });
@@ -22,11 +22,16 @@ export default createReducer(initialState, {
 });
 
 
+export function isConfigLoaded(rootState) {
+  return rootState.tallessa.getIn(['config', 'loaded']);
+}
+
+
 export function getConfig() {
   return {
     types: [GET_CONFIG_REQUEST, GET_CONFIG_SUCCESS, GET_CONFIG_FAILURE],
     payload: promiseProps({
-      pending: false,
+      loaded: true,
       user: get('/user'),
       team: get('/team'),
     }),

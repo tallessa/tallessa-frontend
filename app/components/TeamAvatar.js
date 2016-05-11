@@ -4,8 +4,8 @@ import Gravatar from './Gravatar';
 
 
 const mapStateToProps = state => ({
-  name: state.getIn(['config', 'team', 'name']),
-  email: state.getIn(['config', 'team', 'gravatarEmail']),
+  name: state.tallessa.getIn(['config', 'team', 'name']),
+  email: state.tallessa.getIn(['config', 'team', 'gravatarEmail']),
 });
 
 const mapDispatchToProps = () => ({});

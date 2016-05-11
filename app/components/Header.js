@@ -43,8 +43,8 @@ Header.propTypes = {
 
 
 const mapStateToProps = state => ({
-  currentViewColor: state.getIn(['currentView', 'color']),
-  currentViewTitle: state.getIn(['currentView', 'viewTitle']),
+  currentViewColor: state.tallessa.getIn(['currentView', 'color']),
+  currentViewTitle: state.tallessa.getIn(['currentView', 'viewTitle']),
 });
 
 const mapDispatchToProps = dispatch => ({

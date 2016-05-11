@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
+import {ReduxAsyncConnect} from 'redux-async-connect';
 
 import App from './components/App';
 import Dashboard from './components/Dashboard';
@@ -27,18 +28,15 @@ injectTapEventPlugin();
 
 const
   store = initializeStore(),
-  history = syncHistoryWithStore(browserHistory, store, {
-    // TODO RemoveReactRouterRedux
-    selectLocationState: (state) => state.get('routing').toJS(),
-  });
+  history = syncHistoryWithStore(browserHistory, store);
 
 
-store.dispatch(getConfig());
+// store.dispatch(getConfig());
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Dashboard} />
         <Route path="stuff" component={Stuff} />

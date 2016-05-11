@@ -3,6 +3,10 @@
     "es2015",
     "react",
   ],
+  "plugins": [
+    "babel-plugin-transform-class-properties",
+    "babel-plugin-transform-decorators-legacy"
+  ],
   "env": {
     "development": {
       "presets": [

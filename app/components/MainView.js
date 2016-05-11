@@ -20,7 +20,7 @@ MainView.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  isDrawerOpen: state.getIn(['ui', 'drawer']),
+  isDrawerOpen: state.tallessa.getIn(['ui', 'drawer']),
   children: ownProps.children,
 });
 
