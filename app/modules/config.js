@@ -2,11 +2,13 @@ import Immutable from 'immutable';
 import {createReducer} from 'redux-immutablejs';
 import promiseProps from 'promise-props';
 
-import config from '../config';
+import {get} from '../helpers/http';
 
 
-const GET_CONFIG = 'tallessa/config/GET_CONFIG';
-
+const
+  GET_CONFIG_REQUEST = 'tallessa/config/GET_CONFIG_REQUEST',
+  GET_CONFIG_SUCCESS = 'tallessa/config/GET_CONFIG_SUCCESS',
+  GET_CONFIG_FAILURE = 'tallessa/config/GET_CONFIG_FAILURE';
 
 const initialState = Immutable.fromJS({
   pending: true,
@@ -15,28 +17,18 @@ const initialState = Immutable.fromJS({
 });
 
 
-function getCurrentTeam() {
-  return fetch(`${config.backend.url}/api/v1/team`).then(res => res.json());
-}
-
-
-function getCurrentUser() {
-  return fetch(`${config.backend.url}/api/v1/user`).then(res => res.json());
-}
-
-
 export default createReducer(initialState, {
-  [GET_CONFIG]: (state, action) => Immutable.fromJS(action.payload),
+  [GET_CONFIG_SUCCESS]: (state, action) => Immutable.fromJS(action.payload),
 });
 
 
 export function getConfig() {
   return {
-    type: GET_CONFIG,
+    types: [GET_CONFIG_REQUEST, GET_CONFIG_SUCCESS, GET_CONFIG_FAILURE],
     payload: promiseProps({
       pending: false,
-      user: getCurrentUser(),
-      team: getCurrentTeam(),
+      user: get('/user'),
+      team: get('/team'),
     }),
   };
 }

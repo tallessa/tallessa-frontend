@@ -11,7 +11,8 @@ const config = {
     url: process.env.TALLESSA_APP_URL || 'https://tallessa.eu',
   },
   backend: {
-    url: process.env.TALLESSA_BACKEND_URL || '',
+    baseUrl: process.env.TALLESSA_BACKEND_URL || '',
+    apiPrefix: '/api/v1',
   },
 };
 
