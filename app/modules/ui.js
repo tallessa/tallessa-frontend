@@ -2,7 +2,7 @@ import {combineReducers, createReducer} from 'redux-immutablejs';
 
 
 const
-  SIGN_OUT = 'tallessa/ui/SIGN_OUT',
+  // SIGN_OUT = 'tallessa/ui/SIGN_OUT',
   TOGGLE_DRAWER = 'tallessa/ui/TOGGLE_DRAWER';
 
 

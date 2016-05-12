@@ -1,5 +1,5 @@
 export default function promiseMiddleware() {
-  return store => next => action => {
+  return store => next => action => {  // eslint-disable-line no-unused-vars
     const {payload, types} = action;
 
     // Only act on Promise payloads
@@ -14,7 +14,7 @@ export default function promiseMiddleware() {
       result => next({payload: result, type: SUCCESS}),
       error => next({payload: error, error: true, type: FAILURE})
     ).catch(error => {
-      console.error('MIDDLEWARE ERROR:', error);
+      console.error('MIDDLEWARE ERROR:', error);  // eslint-disable-line no-console
       next({payload: error, error: true, type: FAILURE});
     });
 

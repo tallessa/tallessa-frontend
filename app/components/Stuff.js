@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {asyncConnect} from 'redux-async-connect';
 import {connect} from 'react-redux';
 
@@ -15,8 +15,11 @@ import {getStuff} from '../modules/stuff';
   })
 )
 export default class Stuff extends React.Component {
+  static propTypes = {
+    store: PropTypes.object,
+  }
+
   render() {
-    console.log(this.props);
     return <div>Stuff</div>;
   }
 }

@@ -17,7 +17,7 @@ const
       prefix: '/',
       viewTitle: 'Dashboard',
       color: null,
-      strictMatch: true
+      strictMatch: true,
     },
     {
       prefix: '/stuff',
@@ -58,7 +58,7 @@ export default createReducer(unknownView, {
         return !view.get('strictMatch') && pathname.indexOf(view.get('prefix')) === 0;
       },
       undefined,
-      unknownView
+      unknownView,
     );
   },
 });

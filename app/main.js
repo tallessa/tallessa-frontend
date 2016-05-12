@@ -8,15 +8,14 @@ import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {ReduxAsyncConnect} from 'redux-async-connect';
 
+import './styles/index.css';
 import App from './components/App';
 import Dashboard from './components/Dashboard';
+import initializeStore from './store';
 import Loans from './components/Loans';
 import Places from './components/Places';
 import Settings from './components/Settings';
 import Stuff from './components/Stuff';
-import './styles/index.css';
-import {getConfig} from './modules/config';
-import initializeStore from './store';
 
 
 // Needed for onTouchTap
@@ -36,7 +35,7 @@ const
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={history}>
+    <Router render={(props) => <ReduxAsyncConnect {...props} />} history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Dashboard} />
         <Route path="stuff" component={Stuff} />

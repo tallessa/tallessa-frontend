@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import {createReducer} from 'redux-immutablejs';
-import promiseProps from 'promise-props';
 
 import {get} from '../helpers/http';
 
@@ -10,7 +9,7 @@ const
   GET_STUFF_SUCCESS = 'tallessa/config/GET_STUFF_SUCCESS',
   GET_STUFF_FAILURE = 'tallessa/config/GET_STUFF_FAILURE';
 
-const initialState = Immutable.List();
+const initialState = Immutable.fromJS([]);
 
 
 export default createReducer(initialState, {

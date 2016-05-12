@@ -31,7 +31,7 @@ function requestWithBody(method) {
   return (apiPath, body = {}, requestOpts = {}) => {
     const
       headers = new Headers({
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
       opts = Object.assign({}, DEFAULT_OPTS, {
@@ -42,7 +42,7 @@ function requestWithBody(method) {
 
     return fetch(makeApiUrl(apiPath), opts)
       .then(checkStatus)
-      .then(res => res.json())
+      .then(res => res.json());
   };
 }
 
@@ -50,7 +50,7 @@ function requestWithBody(method) {
 function requestWithoutBody(method) {
   return (apiPath, requestOpts) => {
     const
-      headers = new Headers({'Accept': 'application/json'}),
+      headers = new Headers({Accept: 'application/json'}),
       opts = Object.assign({}, DEFAULT_OPTS, {method, headers}, requestOpts);
 
     return fetch(makeApiUrl(apiPath), opts)

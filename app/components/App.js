@@ -13,11 +13,14 @@ import {isConfigLoaded, getConfig} from '../modules/config';
     if (!isConfigLoaded(store.getState())) {
       return store.dispatch(getConfig());
     }
+
+    return null;
   },
 }])
 export default class App extends React.Component {
   static propTypes = {
-    children: PropTypes.element
+    children: PropTypes.element,
+    store: PropTypes.object,
   }
 
   render() {

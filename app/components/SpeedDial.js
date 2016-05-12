@@ -70,7 +70,7 @@ SpeedDial.propTypes = {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({  // eslint-disable-line no-unused-vars
   // onAddStuffClick: () => dispatch(addStuff()),
   // onAddPlaceClick: () => dispatch(addPlace()),
   // onAddLoanClick: () => dispatch(addLoan()),
