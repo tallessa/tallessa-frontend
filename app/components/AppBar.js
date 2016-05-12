@@ -1,9 +1,10 @@
-import AppBar from 'material-ui/lib/app-bar';
-import IconButton from 'material-ui/lib/icon-button';
-import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
+import MuiAppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {blue500} from 'material-ui/lib/styles/colors';
+import {blue500} from 'material-ui/styles/colors';
+import TextField from 'material-ui/TextField';
 
 import config from '../config';
 import TeamAvatar from './TeamAvatar';
@@ -14,12 +15,10 @@ import {toggleDrawer} from '../modules/ui';
 const defaultAppBarColor = blue500;
 
 
-const Header = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
-  <AppBar
+const AppBar = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
+  <MuiAppBar
+    style={{borderTop: `4px solid ${currentViewColor}`, transition: 'border-color 0.25s'}}
     title={currentViewTitle || config.app.name}
-    style={{
-      backgroundColor: currentViewColor || defaultAppBarColor,
-    }}
     iconElementLeft={
       <IconButton onClick={onLeftButtonClick}>
         <MenuIcon />
@@ -35,7 +34,7 @@ const Header = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
 );
 
 
-Header.propTypes = {
+AppBar.propTypes = {
   onLeftButtonClick: PropTypes.func.isRequired,
   currentViewColor: PropTypes.string,
   currentViewTitle: PropTypes.string,
@@ -55,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(AppBar);

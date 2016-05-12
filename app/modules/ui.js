@@ -8,7 +8,7 @@ const
 
 const drawer = createReducer(true, {
   [TOGGLE_DRAWER]: state => !state,
-});
+}, false);
 
 
 export default combineReducers({

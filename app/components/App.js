@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
-import {asyncConnect} from 'redux-async-connect';
+import {asyncConnect} from 'redux-connect';
 
 import Drawer from '../components/Drawer';
-import Header from '../components/Header';
+import AppBar from '../components/AppBar';
 import MainView from '../components/MainView';
 import SpeedDial from '../components/SpeedDial';
 import {isConfigLoaded, getConfig} from '../modules/config';
@@ -28,7 +28,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Header />
+        <AppBar />
         <Drawer />
         <MainView>{children}</MainView>
         <SpeedDial />

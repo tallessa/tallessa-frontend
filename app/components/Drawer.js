@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Divider from 'material-ui/lib/divider';
-import DashboardIcon from 'material-ui/lib/svg-icons/action/dashboard';
-import SettingsIcon from 'material-ui/lib/svg-icons/action/settings';
-import PowerSettingsNewIcon from 'material-ui/lib/svg-icons/action/power-settings-new';
+import MuiDrawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
+import SettingsIcon from 'material-ui/svg-icons/action/settings';
+import PowerSettingsNewIcon from 'material-ui/svg-icons/action/power-settings-new';
 
 import colors from '../styles/colors';
 import icons from '../styles/icons';
@@ -14,12 +14,7 @@ import DrawerItem from './DrawerItem';
 
 
 const Drawer = ({isOpen, onSignOutClick}) => (
-  <LeftNav
-    open={isOpen}
-    style={{
-      marginTop: 64,
-    }}
-  >
+  <MuiDrawer open={isOpen} docked containerStyle={{marginTop: 65}}>
     <DrawerItem
       path="/"
       icon={<DashboardIcon />}
@@ -64,7 +59,7 @@ const Drawer = ({isOpen, onSignOutClick}) => (
     >
       Sign out
     </MenuItem>
-  </LeftNav>
+  </MuiDrawer>
 );
 
 

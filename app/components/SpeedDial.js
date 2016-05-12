@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import colors from '../styles/colors';
 import icons from '../styles/icons';

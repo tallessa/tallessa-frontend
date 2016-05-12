@@ -1,22 +1,24 @@
 import {LOCATION_CHANGE} from 'react-router-redux';
 import Immutable from 'immutable';
 import {createReducer} from 'redux-immutablejs';
+import {white} from 'material-ui/styles/colors';
 
 import colors from '../styles/colors';
 
 
 const
+  defaultColor = white,
   unknownView = Immutable.fromJS({
     prefix: null,
     viewTitle: null,
-    color: null,
+    color: defaultColor,
     strictMatch: false,
   }),
   knownViews = Immutable.fromJS([
     {
       prefix: '/',
       viewTitle: 'Dashboard',
-      color: null,
+      color: defaultColor,
       strictMatch: true,
     },
     {
@@ -40,7 +42,7 @@ const
     {
       prefix: '/settings',
       viewTitle: 'Settings',
-      color: null,
+      color: defaultColor,
       strictMatch: false,
     },
   ]);
@@ -58,7 +60,7 @@ export default createReducer(unknownView, {
         return !view.get('strictMatch') && pathname.indexOf(view.get('prefix')) === 0;
       },
       undefined,
-      unknownView,
+      unknownView
     );
   },
 });

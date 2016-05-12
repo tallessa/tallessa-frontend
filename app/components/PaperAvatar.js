@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import Avatar from 'material-ui/lib/avatar';
-import Paper from 'material-ui/lib/paper';
+import Avatar from 'material-ui/Avatar';
+import Paper from 'material-ui/Paper';
 
 
 const PictureAvatar = ({src}) => (
@@ -10,7 +10,7 @@ const PictureAvatar = ({src}) => (
       height: '40px',
       display: 'inline-block',
       position: 'relative',
-      top: 3,
+      top: 2,
       marginLeft: 8,
     }}
   >
@@ -31,7 +31,7 @@ const LetterAvatar = ({letter}) => (
       height: '40px',
       display: 'inline-block',
       position: 'relative',
-      top: -9,
+      top: -10,
       marginLeft: 8,
     }}
   >

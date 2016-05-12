@@ -6,13 +6,15 @@ import ReactDOM from 'react-dom';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
-import {ReduxAsyncConnect} from 'redux-async-connect';
+import {ReduxAsyncConnect} from 'redux-connect';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './styles/index.css';
 import App from './components/App';
 import Dashboard from './components/Dashboard';
 import initializeStore from './store';
 import Loans from './components/Loans';
+import muiTheme from './styles/muiTheme';
 import Places from './components/Places';
 import Settings from './components/Settings';
 import Stuff from './components/Stuff';
@@ -35,15 +37,17 @@ const
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router render={(props) => <ReduxAsyncConnect {...props} />} history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
-        <Route path="stuff" component={Stuff} />
-        <Route path="places" component={Places} />
-        <Route path="loans" component={Loans} />
-        <Route path="settings" component={Settings} />
-      </Route>
-    </Router>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Router render={(props) => <ReduxAsyncConnect {...props} />} history={history}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Dashboard} />
+          <Route path="stuff" component={Stuff} />
+          <Route path="places" component={Places} />
+          <Route path="loans" component={Loans} />
+          <Route path="settings" component={Settings} />
+        </Route>
+      </Router>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
 );

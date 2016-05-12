@@ -1,10 +1,10 @@
-import {pink500, cyan500, green500} from 'material-ui/lib/styles/colors';
+import {blue900, blue700, blue500} from 'material-ui/styles/colors';
 
 
 const colors = {
-  stuff: pink500,
-  places: cyan500,
-  loans: green500,
+  stuff: blue900,
+  places: blue700,
+  loans: blue500,
 };
 
 

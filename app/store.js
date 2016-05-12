@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
-import {reducer as reduxAsyncConnect} from 'redux-async-connect';
+import {reducer as reduxAsyncConnect} from 'redux-connect';
 import {routerReducer as routing} from 'react-router-redux';
 
 import tallessa from './modules';
