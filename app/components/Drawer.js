@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
 import MuiDrawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
@@ -53,12 +52,11 @@ const Drawer = ({isOpen, onSignOutClick}) => (
       title="Settings"
     />
 
-    <MenuItem
-      rightIcon={<PowerSettingsNewIcon />}
+    <DrawerItem
+      icon={<PowerSettingsNewIcon />}
       onClick={onSignOutClick}
-    >
-      Sign out
-    </MenuItem>
+      title="Sign out"
+    />
   </MuiDrawer>
 );
 
