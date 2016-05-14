@@ -3,7 +3,10 @@ import React, {PropTypes} from 'react';
 
 
 const MainView = ({isDrawerOpen, children}) => (
-  <div style={{marginLeft: isDrawerOpen ? 256 : 0}}>
+  <div style={{
+    margin: "1em",
+    marginLeft: isDrawerOpen ? "calc(256px + 1em)" : 0
+  }}>
     {children}
   </div>
 );

@@ -13,7 +13,7 @@ import DrawerItem from './DrawerItem';
 
 
 const Drawer = ({isOpen, onSignOutClick}) => (
-  <MuiDrawer open={isOpen} docked containerStyle={{marginTop: 65}}>
+  <MuiDrawer open={isOpen} containerStyle={{marginTop: 65}}>
     <DrawerItem
       path="/"
       icon={<DashboardIcon />}

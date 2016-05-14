@@ -22,6 +22,9 @@ module.exports = {
       'react-tap-event-plugin',
       'redux',
       'redux-promise',
+      'redux-connect',
+      'core-js',
+      'redux-actions',
     ]
   },
   output: {

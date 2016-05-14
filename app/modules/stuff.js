@@ -5,9 +5,9 @@ import {get} from '../helpers/http';
 
 
 const
-  GET_STUFF_REQUEST = 'tallessa/config/GET_STUFF_REQUEST',
-  GET_STUFF_SUCCESS = 'tallessa/config/GET_STUFF_SUCCESS',
-  GET_STUFF_FAILURE = 'tallessa/config/GET_STUFF_FAILURE';
+  GET_STUFF_REQUEST = 'tallessa/stuff/GET_STUFF_REQUEST',
+  GET_STUFF_SUCCESS = 'tallessa/stuff/GET_STUFF_SUCCESS',
+  GET_STUFF_FAILURE = 'tallessa/stuff/GET_STUFF_FAILURE';
 
 const initialState = Immutable.fromJS([]);
 
