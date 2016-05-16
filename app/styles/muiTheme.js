@@ -1,5 +1,4 @@
-import React from 'react';
-import {grey50, indigo900, white} from 'material-ui/styles/colors';
+import {indigo900, white} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 

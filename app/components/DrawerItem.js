@@ -6,7 +6,7 @@ import go from '../helpers/go';
 
 
 const DrawerItem = ({path, icon, color, title, currentPath, onClick, strictMatch = false}) => {
-  if ((!path && !onClick) || (path && onClick)) {
+  if ((!path && !onClick) || (path && onClick)) {
     throw new Error('Exactly one of `path` and `onClick` must be supplied.');
   }
 
@@ -16,7 +16,7 @@ const DrawerItem = ({path, icon, color, title, currentPath, onClick, strictMatch
   return (
     <MenuItem
       rightIcon={icon}
-      onClick={onClick || go(path)}
+      onClick={onClick || go(path)}
       style={{
         borderLeft: color ? `4px solid ${color}` : 'none',
         paddingLeft: color ? 0 : 4,

@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {asyncConnect} from 'redux-connect';
-import Paper from 'material-ui/Paper';
 
 import {getStuff} from '../modules/stuff';
 import Breakfast from './Breakfast';
@@ -19,7 +18,7 @@ export default class StuffView extends React.Component {
   render() {
     return (
       <div>
-        <Breakfast messageKey='stuff.welcome'>This is the Stuff view! Blah blah blablablah blah blah.</Breakfast>
+        <Breakfast messageKey="stuff.welcome">This is the Stuff view! Blah blah blah.</Breakfast>
         <StuffList />
         <ItemEditor />
       </div>

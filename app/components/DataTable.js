@@ -1,9 +1,17 @@
 import React, {PropTypes} from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 import Immutable from 'immutable';
 
 
+// Support both plain objects and Immutable.Map
 function getField(item, fieldName) {
   if (Immutable.Map.isMap(item)) return item.get(fieldName);
   return item[fieldName];
@@ -38,7 +46,7 @@ DataTable.propTypes = {
     PropTypes.array,
   ]),
   fields: PropTypes.array,
-}
+};
 
 
 export default DataTable;

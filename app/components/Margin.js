@@ -9,7 +9,7 @@ const Margin = ({children}) => <div style={{margin: defaultMargin}}>{children}</
 
 Margin.propTypes = {
   children: PropTypes.object,
-}
+};
 
 
 export default Margin;

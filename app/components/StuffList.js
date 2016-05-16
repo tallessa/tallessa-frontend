@@ -26,6 +26,6 @@ export default class StuffView extends React.Component {
   render() {
     const {stuff} = this.props;
 
-    return <DataTable fields={fields} items={stuff} />;
+    return <DataTable fields={fields} items={stuff} />;
   }
 }

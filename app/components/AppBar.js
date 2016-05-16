@@ -3,16 +3,11 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {blue500} from 'material-ui/styles/colors';
-import TextField from 'material-ui/TextField';
 
 import config from '../config';
 import TeamAvatar from './TeamAvatar';
 import UserAvatar from './UserAvatar';
 import {toggleDrawer} from '../modules/ui';
-
-
-const defaultAppBarColor = blue500;
 
 
 const AppBar = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
