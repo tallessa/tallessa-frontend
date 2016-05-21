@@ -18,8 +18,8 @@ function getField(item, fieldName) {
 }
 
 
-const DataTable = ({items, fields}) => (
-  <Table>
+const DataTable = ({items, fields, onRowSelection, selectedItem}) => (
+  <Table onRowSelection={onRowSelection}>
     <TableHeader>
       <TableRow>
         {fields.map(field => (
@@ -29,7 +29,7 @@ const DataTable = ({items, fields}) => (
     </TableHeader>
     <TableBody>
       {items.map(item => (
-        <TableRow key={item.slug}>
+        <TableRow key={item.slug} selected={Immutable.is(selectedItem, item)}>
           {fields.map(field => (
             <TableRowColumn key={field.name}>{getField(item, field.name)}</TableRowColumn>
           ))}
@@ -45,7 +45,12 @@ DataTable.propTypes = {
     ImmutablePropTypes.iterable,
     PropTypes.array,
   ]),
-  fields: PropTypes.array,
+  selectedItem: PropTypes.oneOfType([
+    ImmutablePropTypes.map,
+    PropTypes.object,
+  ]),
+  fields: PropTypes.array.isRequired,
+  onRowSelection: PropTypes.func,
 };
 
 

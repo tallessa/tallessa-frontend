@@ -12,6 +12,6 @@ export default createReducer(null, {
 export function selectItem(item) {
   return {
     type: SELECT_ITEM,
-    item,
+    payload: item,
   };
 }
