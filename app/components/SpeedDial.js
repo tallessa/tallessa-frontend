@@ -4,11 +4,12 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import colors from '../styles/colors';
 import icons from '../styles/icons';
+import go from '../helpers/go';
 
 
 // TODO Tooltips https://github.com/callemall/material-ui/issues/2230
 
-const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
+const SpeedDial = ({onAddPlaceClick, onAddLoanClick}) => (
   <div
     style={{
       position: 'absolute',
@@ -23,7 +24,7 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
     {/* Add stuff */}
     <FloatingActionButton
       backgroundColor={colors.stuff}
-      onClick={onAddStuffClick}
+      onClick={go('/stuff/new')}
     >
       {icons.stuff}
     </FloatingActionButton>
@@ -59,7 +60,6 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
 
 SpeedDial.propTypes = {
   onAddPlaceClick: PropTypes.func,
-  onAddStuffClick: PropTypes.func,
   onAddLoanClick: PropTypes.func,
 };
 
@@ -67,7 +67,6 @@ SpeedDial.propTypes = {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({  // eslint-disable-line no-unused-vars
-  // onAddStuffClick: () => dispatch(addStuff()),
   // onAddPlaceClick: () => dispatch(addPlace()),
   // onAddLoanClick: () => dispatch(addLoan()),
 });

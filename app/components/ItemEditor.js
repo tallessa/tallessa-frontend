@@ -5,19 +5,26 @@ import React, {PropTypes} from 'react';
 
 import go from '../helpers/go';
 import Editor from './Editor';
-import {getItem, createItem, updateItem, deleteItem} from '../modules/item';
+import {getItem, createItem, updateItem, deleteItem, newItem} from '../modules/item';
 
 
 const schema = {
   type: 'object',
   properties: {
-    name: { type: 'string' },
+    name: {
+      type: 'string',
+      title: 'Name',
+      placeholder: 'Apple iPhone 6 64GB Space Gray',
+    },
   },
 };
 
 
 @asyncConnect([{
-  promise: ({params: {itemSlug}, store}) => store.dispatch(getItem(itemSlug)),
+  promise: ({params: {itemSlug}, store}) => {
+    if (itemSlug === 'new') return store.dispatch(newItem());
+    return store.dispatch(getItem(itemSlug));
+  },
 }])
 @connect(
   state => ({
@@ -45,6 +52,7 @@ export default class ItemEditor extends React.Component {
       <Editor
         model={item}
         schema={schema}
+        title={item.get('name') || 'New Item'}
         onCreate={createItem}
         onUpdate={updateItem}
         onDelete={deleteItem}
