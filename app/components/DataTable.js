@@ -18,40 +18,62 @@ function getField(item, fieldName) {
 }
 
 
-const DataTable = ({items, fields, onRowSelection, selectedItem}) => (
-  <Table onRowSelection={onRowSelection}>
-    <TableHeader>
-      <TableRow>
-        {fields.map(field => (
-          <TableHeaderColumn key={field.name}>{field.title}</TableHeaderColumn>
-        ))}
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      {items.map(item => (
-        <TableRow key={item.slug} selected={Immutable.is(selectedItem, item)}>
-          {fields.map(field => (
-            <TableRowColumn key={field.name}>{getField(item, field.name)}</TableRowColumn>
+export default class DataTable extends React.Component {
+  static propTypes = {
+    items: PropTypes.oneOfType([
+      ImmutablePropTypes.iterable,
+      PropTypes.array,
+    ]),
+    selectedItem: PropTypes.oneOfType([
+      ImmutablePropTypes.map,
+      PropTypes.object,
+    ]),
+    fields: PropTypes.array.isRequired,
+    onRowSelection: PropTypes.func,
+  };
+
+  constructor() {
+    super();
+    this.selectItem = this.selectItem.bind(this);
+  }
+
+  selectItem(selectedRows) {
+    const {onRowSelection, items} = this.props;
+    const selectedIndex = selectedRows[0];
+
+    if (typeof onRowSelection !== 'undefined') {
+      if (typeof selectedIndex !== 'undefined') {
+        const selectedItem = items.get(selectedIndex);
+        console.log('selectItem', selectedItem);
+        onRowSelection(selectedItem);
+      } else {
+        onRowSelection(null);
+      }
+    }
+  }
+
+  render() {
+    const {items, fields, selectedItem} = this.props;
+
+    return (
+      <Table onRowSelection={this.selectItem}>
+        <TableHeader>
+          <TableRow>
+            {fields.map(field => (
+              <TableHeaderColumn key={field.name}>{field.title}</TableHeaderColumn>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {items.map(item => (
+            <TableRow key={item.slug} selected={Immutable.is(selectedItem, item)}>
+              {fields.map(field => (
+                <TableRowColumn key={field.name}>{getField(item, field.name)}</TableRowColumn>
+              ))}
+            </TableRow>
           ))}
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-);
-
-
-DataTable.propTypes = {
-  items: PropTypes.oneOfType([
-    ImmutablePropTypes.iterable,
-    PropTypes.array,
-  ]),
-  selectedItem: PropTypes.oneOfType([
-    ImmutablePropTypes.map,
-    PropTypes.object,
-  ]),
-  fields: PropTypes.array.isRequired,
-  onRowSelection: PropTypes.func,
-};
-
-
-export default DataTable;
+        </TableBody>
+      </Table>
+    );
+  }
+}

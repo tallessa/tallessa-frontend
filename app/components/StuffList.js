@@ -1,7 +1,9 @@
-import React, {PropTypes} from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
+import React, {PropTypes} from 'react';
+import {asyncConnect} from 'redux-connect';
+import {browserHistory} from 'react-router';
+import {connect} from 'react-redux';
 
 import DataTable from './DataTable';
 import {selectItem} from '../modules/item';
@@ -16,6 +18,9 @@ const fields = [
 ];
 
 
+@asyncConnect([{
+  promise: ({store}) => store.dispatch(getStuff()),
+}])
 @connect(
   state => ({
     stuff: state.tallessa.get('stuff'),
@@ -27,37 +32,22 @@ const fields = [
 )
 export default class StuffList extends React.Component {
   static propTypes = {
-    stuff: ImmutablePropTypes.list.isRequired,
+    stuff: ImmutablePropTypes.list,
     item: ImmutablePropTypes.map,
-    selectItem: PropTypes.func.isRequired,
-  }
-
-  constructor() {
-    super();
-
-    // TODO How to avoid this
-    this.selectItem = this.selectItem.bind(this);
-  }
-
-  selectItem(selectedRows) {
-    const {selectItem, stuff} = this.props; // eslint-disable-line no-shadow
-    const selectedIndex = selectedRows[0];
-
-    console.log('StuffList', 'selectItem', selectedIndex);
-
-    if (typeof selectedIndex !== 'undefined') {
-      return selectItem(stuff.get(selectedIndex));
-    } else {
-      return selectItem(null);
-    }
+    selectItem: PropTypes.func,
   }
 
   render() {
-    const {stuff} = this.props; // eslint-disable-line no-shadow
+    const {stuff, item} = this.props; // eslint-disable-line no-shadow
 
     return (
       <Paper>
-        <DataTable fields={fields} items={stuff} onRowSelection={this.selectItem} />
+        <DataTable
+          fields={fields}
+          items={stuff}
+          selectedItem={item}
+          onRowSelection={selectedItem => browserHistory.push(`/stuff/${selectedItem.get('slug')}`)}
+        />
       </Paper>
     );
   }
