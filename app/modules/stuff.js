@@ -20,6 +20,6 @@ export default createReducer(initialState, {
 export function getStuff() {
   return {
     types: [GET_STUFF_REQUEST, GET_STUFF_SUCCESS, GET_STUFF_FAILURE],
-    payload: get('/stuff'),
+    payload: get('/stuff/'),
   };
 }

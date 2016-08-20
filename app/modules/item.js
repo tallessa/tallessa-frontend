@@ -27,7 +27,7 @@ export default createReducer(null, {
 export function getItem(itemSlug) {
   return {
     types: [GET_ITEM_REQUEST, GET_ITEM_SUCCESS, GET_ITEM_FAILURE],
-    payload: get(`/stuff/${itemSlug}`),
+    payload: get(`/stuff/${itemSlug}/`),
   };
 }
 
@@ -35,7 +35,7 @@ export function getItem(itemSlug) {
 export function createItem(item) {
   return {
     types: [CREATE_ITEM_REQUEST, CREATE_ITEM_SUCCESS, CREATE_ITEM_FAILURE],
-    payload: post('/stuff', item),
+    payload: post('/stuff/', item),
   };
 }
 
@@ -43,7 +43,7 @@ export function createItem(item) {
 export function updateItem(item) {
   return {
     types: [UPDATE_ITEM_REQUEST, UPDATE_ITEM_SUCCESS, UPDATE_ITEM_FAILURE],
-    payload: put(`/stuff/${item.slug}`, item),
+    payload: put(`/stuff/${item.slug}/`, item),
   };
 }
 
@@ -51,6 +51,6 @@ export function updateItem(item) {
 export function deleteItem(item) {
   return {
     types: [DELETE_ITEM_REQUEST, DELETE_ITEM_SUCCESS, DELETE_ITEM_FAILURE],
-    payload: del(`/stuff/${item.slug}`),
+    payload: del(`/stuff/${item.slug}/`),
   };
 }
