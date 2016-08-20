@@ -43,9 +43,7 @@ export default class DataTable extends React.Component {
 
     if (typeof onRowSelection !== 'undefined') {
       if (typeof selectedIndex !== 'undefined') {
-        const selectedItem = items.get(selectedIndex);
-        console.log('selectItem', selectedItem);
-        onRowSelection(selectedItem);
+        onRowSelection(items.get(selectedIndex));
       } else {
         onRowSelection(null);
       }
@@ -66,7 +64,7 @@ export default class DataTable extends React.Component {
         </TableHeader>
         <TableBody>
           {items.map(item => (
-            <TableRow key={item.slug} selected={Immutable.is(selectedItem, item)}>
+            <TableRow key={getField(item, 'slug')} selected={Immutable.is(selectedItem, item)}>
               {fields.map(field => (
                 <TableRowColumn key={field.name}>{getField(item, field.name)}</TableRowColumn>
               ))}

@@ -17,7 +17,8 @@ import Loans from './components/Loans';
 import muiTheme from './styles/muiTheme';
 import Places from './components/Places';
 import Settings from './components/Settings';
-import StuffView from './components/StuffView';
+import StuffList from './components/StuffList';
+import ItemEditor from './components/ItemEditor';
 
 
 // Needed for onTouchTap
@@ -41,7 +42,10 @@ ReactDOM.render(
       <Router render={(props) => <ReduxAsyncConnect {...props} />} history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Dashboard} />
-          <Route path="stuff" component={StuffView} />
+          <Route path="stuff">
+            <IndexRoute component={StuffList} />
+            <Route path=":itemSlug" component={ItemEditor} />
+          </Route>
           <Route path="places" component={Places} />
           <Route path="loans" component={Loans} />
           <Route path="settings" component={Settings} />

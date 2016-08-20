@@ -33,12 +33,10 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
       mini
       backgroundColor={colors.places}
       onClick={onAddPlaceClick}
-      style={
+      style={{
         // XXX It feels very wrong to use margin inside flexbox.
-      {
         marginBottom: '10px',
-      }
-      }
+      }}
     >
       {icons.places}
     </FloatingActionButton>
@@ -48,12 +46,10 @@ const SpeedDial = ({onAddStuffClick, onAddPlaceClick, onAddLoanClick}) => (
       mini
       onClick={onAddLoanClick}
       backgroundColor={colors.loans}
-      style={
+      style={{
         // XXX It feels very wrong to use margin inside flexbox.
-      {
         marginBottom: '10px',
-      }
-      }
+      }}
     >
       {icons.loans}
     </FloatingActionButton>

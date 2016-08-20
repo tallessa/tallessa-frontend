@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 
 import DataTable from './DataTable';
 import {selectItem} from '../modules/item';
+import {getStuff} from '../modules/stuff';
 
 
 // TODO perhaps move to state
