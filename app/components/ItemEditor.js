@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import React, {PropTypes} from 'react';
 
+import go from '../helpers/go';
 import Editor from './Editor';
 import {getItem, createItem, updateItem, deleteItem} from '../modules/item';
 
@@ -41,16 +42,14 @@ export default class ItemEditor extends React.Component {
     const {item, createItem, updateItem, deleteItem} = this.props; // eslint-disable-line no-shadow
 
     return (
-      <div>
-        <p>{item.get('name')}</p>
-        <Editor
-          model={item}
-          schema={schema}
-          onCreate={createItem}
-          onUpdate={updateItem}
-          onDelete={deleteItem}
-        />
-      </div>
-);
+      <Editor
+        model={item}
+        schema={schema}
+        onCreate={createItem}
+        onUpdate={updateItem}
+        onDelete={deleteItem}
+        onCancel={go('/stuff')}
+      />
+    );
   }
 }

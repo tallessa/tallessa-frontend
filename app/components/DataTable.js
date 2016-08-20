@@ -10,12 +10,7 @@ import {
 } from 'material-ui/Table';
 import Immutable from 'immutable';
 
-
-// Support both plain objects and Immutable.Map
-function getField(item, fieldName) {
-  if (Immutable.Map.isMap(item)) return item.get(fieldName);
-  return item[fieldName];
-}
+import getField from '../helpers/getField';
 
 
 export default class DataTable extends React.Component {
