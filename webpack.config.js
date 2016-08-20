@@ -1,14 +1,13 @@
-const
-  webpack = require('webpack'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  CompressionPlugin = require("compression-webpack-plugin"),
-  env = process.env.NODE_ENV || 'development';
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const env = process.env.NODE_ENV || 'development';
+
 
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
-    app: __dirname + "/app/main.js",
+    app: `${__dirname}/app/main.js`,
     vendor: [
       'blueimp-md5',
       'isomorphic-fetch',
@@ -25,33 +24,28 @@ module.exports = {
       'redux-connect',
       'core-js',
       'redux-actions',
-    ]
+    ],
   },
   output: {
-    path: __dirname + "/dist",
-    filename: "bundle.js"
+    path: `${__dirname}/dist`,
+    filename: 'bundle.js',
+    publicPath: '/',
   },
 
   module: {
     loaders: [
-      { test: /\.json$/, loader: "json" },
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-      { test: /\.css$/, loader: 'style!css?modules!postcss' }
-    ]
+      {test: /\.json$/, loader: 'json'},
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
+      {test: /\.css$/, loader: 'style!css?modules!postcss'},
+    ],
   },
-  postcss: [
-    require('autoprefixer')
-  ],
+  postcss: [autoprefixer],
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': `"${env}"`,
-    }),
-    new HtmlWebpackPlugin({
-      template: __dirname + "/app/index.tmpl.html"
-    }),
+    new webpack.DefinePlugin({'process.env.NODE_ENV': `'${env}'`}),
+    new HtmlWebpackPlugin({template: `${__dirname}/app/index.tmpl.html`}),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
   ],
 
   devServer: {
