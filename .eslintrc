@@ -9,6 +9,7 @@
     "object-curly-spacing": "off",
     "one-var": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "no-else-return": "off"
   }
 }

@@ -53,6 +53,7 @@ export default class ItemEditor extends React.Component {
         model={item}
         schema={schema}
         title={item.get('name') || 'New Item'}
+        subtitle={item.get('category') || 'Category of the Item will appear here'}
         onCreate={createItem}
         onUpdate={updateItem}
         onDelete={deleteItem}
