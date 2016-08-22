@@ -29,10 +29,10 @@ export default createReducer(null, {
 export function newItem() {
   return {
     type: NEW_ITEM,
-    payload: Immutable.fromJS({
+    payload: {
       slug: null,
       name: '',
-    }),
+    },
   };
 }
 
