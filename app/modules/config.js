@@ -12,6 +12,7 @@ const
 
 const initialState = Immutable.fromJS({
   loaded: false,
+  failed: false,
   team: {},
   user: {},
 });
@@ -19,6 +20,7 @@ const initialState = Immutable.fromJS({
 
 export default createReducer(initialState, {
   [GET_CONFIG_SUCCESS]: (state, action) => Immutable.fromJS(action.payload),
+  [GET_CONFIG_FAILURE]: () => initialState.merge({failed: true}),
 });
 
 
@@ -32,6 +34,7 @@ export function getConfig() {
     types: [GET_CONFIG_REQUEST, GET_CONFIG_SUCCESS, GET_CONFIG_FAILURE],
     payload: promiseProps({
       loaded: true,
+      failed: false,
       user: get('/user'),
       team: get('/team'),
     }),
