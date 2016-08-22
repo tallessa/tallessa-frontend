@@ -4,11 +4,15 @@ import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
+import {connect} from 'react-redux';
 
 import SchemaForm from './SchemaForm';
 // import getField from '../helpers/getField';
 
 
+@connect(state => ({
+  formData: state.form.getIn(['editor', 'values']),
+}))
 export default class Editor extends React.Component {
   static propTypes = {
     model: ImmutablePropTypes.map,
@@ -19,6 +23,7 @@ export default class Editor extends React.Component {
     schema: PropTypes.object.isRequired,
     subtitle: PropTypes.string,
     title: PropTypes.string,
+    formData: ImmutablePropTypes.map,
   }
 
   constructor() {
@@ -33,19 +38,20 @@ export default class Editor extends React.Component {
   }
 
   save() {
-    const {onCreate, onUpdate, model} = this.props;
+    const {onCreate, onUpdate, model, formData} = this.props;
+    const updatedModel = model.mergeDeep(formData);
 
     if (this.isNew()) {
-      onCreate(model);
+      onCreate(updatedModel);
     } else {
-      onUpdate(model);
+      onUpdate(updatedModel);
     }
 
     return false;
   }
 
   render() {
-    const {schema, title, subtitle, onCancel, onDelete} = this.props;
+    const {schema, title, model, subtitle, onCancel, onDelete} = this.props;
 
     return (
       <Card>
@@ -56,7 +62,7 @@ export default class Editor extends React.Component {
         </CardHeader>
 
         <CardText>
-          <SchemaForm form="editor" schema={schema} onSubmit={this.save} />
+          <SchemaForm form="editor" initialValues={model} schema={schema} onSubmit={this.save} />
         </CardText>
 
         <CardActions>

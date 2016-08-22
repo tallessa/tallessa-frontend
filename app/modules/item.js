@@ -56,7 +56,7 @@ export function createItem(item) {
 export function updateItem(item) {
   return {
     types: [UPDATE_ITEM_REQUEST, UPDATE_ITEM_SUCCESS, UPDATE_ITEM_FAILURE],
-    payload: put(`/stuff/${item.slug}/`, item),
+    payload: put(`/stuff/${item.get('slug')}/`, item),
   };
 }
 
@@ -64,6 +64,6 @@ export function updateItem(item) {
 export function deleteItem(item) {
   return {
     types: [DELETE_ITEM_REQUEST, DELETE_ITEM_SUCCESS, DELETE_ITEM_FAILURE],
-    payload: del(`/stuff/${item.slug}/`),
+    payload: del(`/stuff/${item.get('slug')}/`),
   };
 }
