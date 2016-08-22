@@ -45,6 +45,18 @@ const
       color: defaultColor,
       strictMatch: false,
     },
+    {
+      prefix: '/team',
+      viewTitle: 'Team',
+      color: defaultColor,
+      strictMatch: false,
+    },
+    {
+      prefix: '/user',
+      viewTitle: 'User',
+      color: defaultColor,
+      strictMatch: false,
+    },
   ]);
 
 

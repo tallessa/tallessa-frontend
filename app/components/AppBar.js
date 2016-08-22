@@ -2,6 +2,7 @@ import MuiAppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
 import config from '../config';
@@ -21,8 +22,8 @@ const AppBar = ({onLeftButtonClick, currentViewColor, currentViewTitle}) => (
     }
     iconElementRight={
       <div>
-        <TeamAvatar />
-        <UserAvatar />
+        <Link to="/team"><TeamAvatar /></Link>
+        <Link to="/user"><UserAvatar /></Link>
       </div>
     }
   />

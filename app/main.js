@@ -13,12 +13,14 @@ import './styles/index.css';
 import App from './components/App';
 import Dashboard from './components/Dashboard';
 import initializeStore from './store';
+import ItemEditor from './components/ItemEditor';
 import Loans from './components/Loans';
 import muiTheme from './styles/muiTheme';
 import Places from './components/Places';
 import Settings from './components/Settings';
 import StuffList from './components/StuffList';
-import ItemEditor from './components/ItemEditor';
+import Team from './components/Team';
+import User from './components/User';
 
 
 // Needed for onTouchTap
@@ -49,6 +51,8 @@ ReactDOM.render(
           <Route path="places" component={Places} />
           <Route path="loans" component={Loans} />
           <Route path="settings" component={Settings} />
+          <Route path="user" component={User} />
+          <Route path="team" component={Team} />
         </Route>
       </Router>
     </MuiThemeProvider>
