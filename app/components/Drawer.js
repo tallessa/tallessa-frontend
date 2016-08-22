@@ -12,10 +12,10 @@ import {signOut} from '../modules/ui';
 import DrawerItem from './DrawerItem';
 
 
-const Drawer = ({isOpen, onSignOutClick}) => (
+const Drawer = ({isOpen, onSignOutTouchTap}) => (
   <MuiDrawer open={isOpen} containerStyle={{marginTop: 65}}>
     <DrawerItem
-      path="/"
+      href="/"
       icon={<DashboardIcon />}
       title="Dashboard"
       strictMatch
@@ -24,21 +24,21 @@ const Drawer = ({isOpen, onSignOutClick}) => (
     <Divider />
 
     <DrawerItem
-      path="/stuff"
+      href="/stuff"
       icon={icons.stuff}
       color={colors.stuff}
       title="Stuff"
     />
 
     <DrawerItem
-      path="/places"
+      href="/places"
       icon={icons.places}
       color={colors.places}
       title="Places"
     />
 
     <DrawerItem
-      path="/loans"
+      href="/loans"
       icon={icons.loans}
       color={colors.loans}
       title="Loans"
@@ -47,14 +47,14 @@ const Drawer = ({isOpen, onSignOutClick}) => (
     <Divider />
 
     <DrawerItem
-      path="/settings"
+      href="/settings"
       icon={<SettingsIcon />}
       title="Settings"
     />
 
     <DrawerItem
       icon={<PowerSettingsNewIcon />}
-      onClick={onSignOutClick}
+      onTouchTap={onSignOutTouchTap}
       title="Sign out"
     />
   </MuiDrawer>
@@ -63,7 +63,7 @@ const Drawer = ({isOpen, onSignOutClick}) => (
 
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onSignOutClick: PropTypes.func.isRequired,
+  onSignOutTouchTap: PropTypes.func.isRequired,
 };
 
 
@@ -71,9 +71,9 @@ const mapStateToProps = state => ({
   isOpen: state.tallessa.getIn(['ui', 'drawer']),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSignOutClick: () => dispatch(signOut()),
-});
+const mapDispatchToProps = {
+  onSignOutTouchTap: signOut,
+};
 
 
 export default connect(

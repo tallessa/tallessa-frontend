@@ -1,41 +1,53 @@
-import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import MenuItem from 'material-ui/MenuItem';
+import React, {PropTypes} from 'react';
 
-import go from '../helpers/go';
 
-
-const DrawerItem = ({path, icon, color, title, currentPath, onClick, strictMatch = false}) => {
-  if ((!path && !onClick) || (path && onClick)) {
-    throw new Error('Exactly one of `path` and `onClick` must be supplied.');
+const DrawerItem = ({href, icon, color, title, currentPath, onTouchTap, strictMatch = false}) => {
+  if ((!href && !onTouchTap) || (href && onTouchTap)) {
+    throw new Error('Exactly one of `href` and `onTouchTap` must be supplied.');
   }
 
   const
-    isActive = path && (strictMatch ? (currentPath === path) : (currentPath.indexOf(path) === 0));
+    isActive = href && (strictMatch ? (currentPath === href) : (currentPath.indexOf(href) === 0)),
+    style = {
+      borderLeft: color ? `4px solid ${color}` : 'none',
+      paddingLeft: color ? 0 : 4,
+      fontWeight: isActive ? 'bold' : 'normal',
+    };
 
-  return (
-    <MenuItem
-      rightIcon={icon}
-      onClick={onClick || go(path)}
-      style={{
-        borderLeft: color ? `4px solid ${color}` : 'none',
-        paddingLeft: color ? 0 : 4,
-        fontWeight: isActive ? 'bold' : 'normal',
-      }}
-    >
-      {title}
-    </MenuItem>
-  );
+  if (href) {
+    return (
+      <MenuItem
+        rightIcon={icon}
+        style={style}
+        containerElement={<Link to={href} />}
+      >
+        {title}
+      </MenuItem>
+    );
+  } else {
+    return (
+      <MenuItem
+        rightIcon={icon}
+        style={style}
+        onTouchTap={onTouchTap}
+      >
+        {title}
+      </MenuItem>
+    );
+  }
 };
 
 
 DrawerItem.propTypes = {
-  path: PropTypes.string,
+  href: PropTypes.string,
   icon: PropTypes.element,
   color: PropTypes.string,
   title: PropTypes.string,
   strictMatch: PropTypes.bool,
-  onClick: PropTypes.func,
+  onTouchTap: PropTypes.func,
   currentPath: PropTypes.string.isRequired,
 };
 
