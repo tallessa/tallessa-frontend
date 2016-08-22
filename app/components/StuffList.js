@@ -38,8 +38,14 @@ export default class StuffList extends React.Component {
     selectItem: PropTypes.func,
   }
 
+  handleRowClick(selectedItem) {
+    if (selectedItem) {
+      browserHistory.push(`/stuff/${selectedItem.get('slug')}`);
+    }
+  }
+
   render() {
-    const {stuff, item} = this.props; // eslint-disable-line no-shadow
+    const {stuff, item} = this.props;
 
     return (
       <Paper>
@@ -47,7 +53,7 @@ export default class StuffList extends React.Component {
           fields={fields}
           items={stuff}
           selectedItem={item}
-          onRowSelection={selectedItem => browserHistory.push(`/stuff/${selectedItem.get('slug')}`)}
+          onRowSelection={this.handleRowClick}
         />
       </Paper>
     );
