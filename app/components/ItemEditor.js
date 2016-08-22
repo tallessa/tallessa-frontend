@@ -50,6 +50,7 @@ export default class ItemEditor extends React.Component {
 
     return (
       <Editor
+        name="item"
         model={item}
         schema={schema}
         title={item.get('name') || 'New Item'}

@@ -10,12 +10,14 @@ import SchemaForm from './SchemaForm';
 // import getField from '../helpers/getField';
 
 
-@connect(state => ({
-  formData: state.form.getIn(['editor', 'values']),
+@connect((state, ownProps) => ({
+  formData: state.form.getIn([ownProps.name, 'values']),
 }))
 export default class Editor extends React.Component {
   static propTypes = {
+    formData: ImmutablePropTypes.map,
     model: ImmutablePropTypes.map,
+    name: PropTypes.string.isRequired,
     onCancel: PropTypes.func,
     onCreate: PropTypes.func,
     onDelete: PropTypes.func,
@@ -23,7 +25,6 @@ export default class Editor extends React.Component {
     schema: PropTypes.object.isRequired,
     subtitle: PropTypes.string,
     title: PropTypes.string,
-    formData: ImmutablePropTypes.map,
   }
 
   constructor() {
@@ -51,7 +52,7 @@ export default class Editor extends React.Component {
   }
 
   render() {
-    const {schema, title, model, subtitle, onCancel, onDelete} = this.props;
+    const {schema, name, title, model, subtitle, onCancel, onDelete} = this.props;
 
     return (
       <Card>
@@ -62,7 +63,7 @@ export default class Editor extends React.Component {
         </CardHeader>
 
         <CardText>
-          <SchemaForm form="editor" initialValues={model} schema={schema} onSubmit={this.save} />
+          <SchemaForm form={name} initialValues={model} schema={schema} onSubmit={this.save} />
         </CardText>
 
         <CardActions>
