@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import config from '../config';
 
 
@@ -33,6 +35,7 @@ function requestWithBody(method) {
       headers = new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
       }),
       opts = Object.assign({}, DEFAULT_OPTS, {
         method,
@@ -50,7 +53,10 @@ function requestWithBody(method) {
 function requestWithoutBody(method) {
   return (apiPath, requestOpts) => {
     const
-      headers = new Headers({Accept: 'application/json'}),
+      headers = new Headers({
+        Accept: 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      }),
       opts = Object.assign({}, DEFAULT_OPTS, {method, headers}, requestOpts);
 
     return fetch(makeApiUrl(apiPath), opts)
