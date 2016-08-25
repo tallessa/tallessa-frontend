@@ -28,58 +28,33 @@ const schema = {
 }])
 @connect(
   state => ({
-    item: state.tallessa.get('item'),
+    model: state.tallessa.get('item'),
   }),
   {
-    createItem,
-    updateItem,
-    deleteItem,
+    onCreate: createItem,
+    onUpdate: updateItem,
+    onDelete: deleteItem,
   }
 )
 export default class ItemEditor extends React.Component {
   static propTypes = {
-    createItem: PropTypes.func,
-    deleteItem: PropTypes.func,
-    item: ImmutablePropTypes.map,
-    schema: PropTypes.array,
-    updateItem: PropTypes.func,
-  }
-
-  constructor() {
-    super();
-    this.handleCreate = this.handleCreate.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleCreate(itemToCreate) {
-    const {createItem} = this.props;
-    createItem(itemToCreate).then(go('/stuff'));
-  }
-
-  handleDelete(itemToDelete) {
-    const {deleteItem} = this.props;
-    deleteItem(itemToDelete).then(go('/stuff'));
-  }
-
-  handleUpdate(itemToUpdate) {
-    const {updateItem} = this.props;
-    updateItem(itemToUpdate).then(go('/stuff'));
+    onCreate: PropTypes.func,
+    onUpdate: PropTypes.func,
+    onDelete: PropTypes.func,
+    model: ImmutablePropTypes.map,
   }
 
   render() {
-    const {item} = this.props;
+    const {model} = this.props;
 
     return (
       <Editor
         name="item"
-        model={item}
         schema={schema}
-        title={item.get('name') || 'New Item'}
-        subtitle={item.get('category') || 'Category of the Item will appear here'}
-        onCreate={this.handleCreate}
-        onUpdate={this.handleUpdate}
-        onDelete={this.handleDelete}
-        onCancel={go('/stuff')}
+        title={model.get('name') || 'New Item'}
+        subtitle={model.get('category') || 'Category of the Item will appear here'}
+        onReturn={go('/stuff')}
+        {...this.props}
       />
     );
   }

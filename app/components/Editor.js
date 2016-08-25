@@ -10,6 +10,9 @@ import SchemaForm from './SchemaForm';
 // import getField from '../helpers/getField';
 
 
+function noop() {}
+
+
 @connect((state, ownProps) => ({
   formData: state.form.getIn([ownProps.name, 'values']),
 }))
@@ -18,13 +21,20 @@ export default class Editor extends React.Component {
     formData: ImmutablePropTypes.map,
     model: ImmutablePropTypes.map,
     name: PropTypes.string.isRequired,
-    onCancel: PropTypes.func,
+    onReturn: PropTypes.func,
     onCreate: PropTypes.func,
     onDelete: PropTypes.func,
     onUpdate: PropTypes.func,
     schema: PropTypes.object.isRequired,
     subtitle: PropTypes.string,
     title: PropTypes.string,
+  }
+
+  static defaultProps = {
+    onReturn: noop,
+    onCreate: noop,
+    onDelete: noop,
+    onUpdate: noop,
   }
 
   constructor() {
@@ -34,41 +44,37 @@ export default class Editor extends React.Component {
   }
 
   isNew() {
-    const {model} = this.props;
-
-    return !model.get('slug');
+    return !this.props.model.get('slug');
   }
 
   save() {
-    const {onCreate, onUpdate, model, formData} = this.props;
+    const {onCreate, onUpdate, onReturn, model, formData} = this.props;
     const updatedModel = model.mergeDeep(formData);
 
     if (this.isNew()) {
-      onCreate(updatedModel);
+      Promise.resolve(onCreate(updatedModel)).then(onReturn);
     } else {
-      onUpdate(updatedModel);
+      Promise.resolve(onUpdate(updatedModel)).then(onReturn);
     }
-
-    return false;
   }
 
   del() {
-    const {onDelete, model} = this.props;
+    const {onDelete, onReturn, model} = this.props;
 
     if (this.isNew()) {
       throw new TypeError('Cowardly refusing to delete unsaved model');
     }
 
-    onDelete(model);
+    Promise.resolve(onDelete(model)).then(onReturn);
   }
 
   render() {
-    const {schema, name, title, model, subtitle, onCancel} = this.props;
+    const {schema, name, title, model, subtitle, onReturn} = this.props;
 
     return (
       <Card>
         <CardHeader title={title} subtitle={subtitle}>
-          <IconButton style={{float: 'right'}} onClick={onCancel}>
+          <IconButton style={{float: 'right'}} onClick={onReturn}>
             <CloseIcon />
           </IconButton>
         </CardHeader>
@@ -79,7 +85,7 @@ export default class Editor extends React.Component {
 
         <CardActions>
           <FlatButton label="Save" onClick={this.save} />
-          <FlatButton label="Cancel" onClick={onCancel} />
+          <FlatButton label="Cancel" onClick={onReturn} />
           {this.isNew() ? null : (
             <FlatButton
               style={{float: 'right', color: 'red'}}
