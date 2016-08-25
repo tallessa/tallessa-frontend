@@ -24,6 +24,12 @@ function checkStatus(response) {
 }
 
 
+function decodeBody(response) {
+  if (response.status === 204) return undefined;
+  return response.json();
+}
+
+
 function makeApiUrl(apiPath) {
   return `${config.backend.baseUrl}${config.backend.apiPrefix}${apiPath}`;
 }
@@ -45,7 +51,7 @@ function requestWithBody(method) {
 
     return fetch(makeApiUrl(apiPath), opts)
       .then(checkStatus)
-      .then(res => res.json());
+      .then(decodeBody);
   };
 }
 
@@ -61,7 +67,7 @@ function requestWithoutBody(method) {
 
     return fetch(makeApiUrl(apiPath), opts)
       .then(checkStatus)
-      .then(res => res.json());
+      .then(decodeBody);
   };
 }
 
