@@ -61,6 +61,7 @@
     "redux-form-material-ui": "^4.0.1",
     "redux-immutablejs": "0.0.8",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.0",
     "webdriverio": "^4.2.7",
     "webpack": "^1.13.2",

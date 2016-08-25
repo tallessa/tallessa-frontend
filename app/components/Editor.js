@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {connect} from 'react-redux';
 
 import SchemaForm from './SchemaForm';
-// import getField from '../helpers/getField';
+import {showSnackbarMessage} from '../modules/ui';
 
 
 function noop() {}
@@ -15,17 +15,20 @@ function noop() {}
 
 @connect((state, ownProps) => ({
   formData: state.form.getIn([ownProps.name, 'values']),
-}))
+}), {
+  showSnackbarMessage,
+})
 export default class Editor extends React.Component {
   static propTypes = {
     formData: ImmutablePropTypes.map,
     model: ImmutablePropTypes.map,
     name: PropTypes.string.isRequired,
-    onReturn: PropTypes.func,
     onCreate: PropTypes.func,
     onDelete: PropTypes.func,
+    onReturn: PropTypes.func,
     onUpdate: PropTypes.func,
     schema: PropTypes.object.isRequired,
+    showSnackbarMessage: PropTypes.func,
     subtitle: PropTypes.string,
     title: PropTypes.string,
   }
@@ -48,13 +51,17 @@ export default class Editor extends React.Component {
   }
 
   save() {
-    const {onCreate, onUpdate, onReturn, model, formData} = this.props;
+    const {onCreate, onUpdate, onReturn, model, formData, showSnackbarMessage, name} = this.props;
     const updatedModel = model.mergeDeep(formData);
 
     if (this.isNew()) {
-      Promise.resolve(onCreate(updatedModel)).then(onReturn);
+      Promise.resolve(onCreate(updatedModel))
+        .then(() => showSnackbarMessage(`editor.${name}.created`))
+        .then(onReturn);
     } else {
-      Promise.resolve(onUpdate(updatedModel)).then(onReturn);
+      Promise.resolve(onUpdate(updatedModel))
+        .then(() => showSnackbarMessage(`editor.${name}.updated`))
+        .then(onReturn);
     }
   }
 
@@ -65,7 +72,9 @@ export default class Editor extends React.Component {
       throw new TypeError('Cowardly refusing to delete unsaved model');
     }
 
-    Promise.resolve(onDelete(model)).then(onReturn);
+    Promise.resolve(onDelete(model))
+      .then(() => showSnackbarMessage(`editor.${name}.deleted`))
+      .then(onReturn);
   }
 
   render() {

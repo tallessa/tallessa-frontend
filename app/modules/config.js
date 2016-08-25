@@ -19,7 +19,7 @@ const initialState = Immutable.fromJS({
 
 
 export default createReducer(initialState, {
-  [GET_CONFIG_SUCCESS]: (state, action) => Immutable.fromJS(action.payload),
+  [GET_CONFIG_SUCCESS]: (state, action) => initialState.merge(action.payload),
   [GET_CONFIG_FAILURE]: () => initialState.merge({failed: true}),
 });
 
