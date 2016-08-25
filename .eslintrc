@@ -10,6 +10,7 @@
     "one-var": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/prefer-stateless-function": "off",
-    "no-else-return": "off"
+    "no-else-return": "off",
+    "no-shadow": "off"
   }
 }

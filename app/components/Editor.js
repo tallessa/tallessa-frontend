@@ -30,6 +30,7 @@ export default class Editor extends React.Component {
   constructor() {
     super();
     this.save = this.save.bind(this);
+    this.del = this.del.bind(this);
   }
 
   isNew() {
@@ -51,8 +52,18 @@ export default class Editor extends React.Component {
     return false;
   }
 
+  del() {
+    const {onDelete, model} = this.props;
+
+    if (this.isNew()) {
+      throw new TypeError('Cowardly refusing to delete unsaved model');
+    }
+
+    onDelete(model);
+  }
+
   render() {
-    const {schema, name, title, model, subtitle, onCancel, onDelete} = this.props;
+    const {schema, name, title, model, subtitle, onCancel} = this.props;
 
     return (
       <Card>
@@ -73,7 +84,7 @@ export default class Editor extends React.Component {
             <FlatButton
               style={{float: 'right', color: 'red'}}
               label="Delete"
-              onClick={onDelete}
+              onClick={this.del}
             />
           )}
         </CardActions>

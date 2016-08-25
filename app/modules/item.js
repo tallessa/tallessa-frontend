@@ -2,6 +2,7 @@ import Immutable from 'immutable';
 import {createReducer} from 'redux-immutablejs';
 
 import {get, post, put, del} from '../helpers/http';
+import slugify from '../helpers/slugify';
 
 
 const
@@ -46,9 +47,11 @@ export function getItem(itemSlug) {
 
 
 export function createItem(item) {
+  const enrichedItem = item.set('slug', slugify(item.get('name')));
+
   return {
     types: [CREATE_ITEM_REQUEST, CREATE_ITEM_SUCCESS, CREATE_ITEM_FAILURE],
-    payload: post('/stuff', item),
+    payload: post('/stuff', enrichedItem),
   };
 }
 
