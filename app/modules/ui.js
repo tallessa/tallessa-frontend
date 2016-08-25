@@ -54,7 +54,7 @@ export function clearSnackbarMessage(message) {
     type: CLEAR_SNACKBAR_MESSAGE,
     payload: {
       message,
-    }
+    },
   };
 }
 
