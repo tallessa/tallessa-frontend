@@ -42,13 +42,14 @@ export default class SchemaForm extends React.Component {
           const field = schema.properties[propertyName];
 
           return (
-            <Field
-              key={propertyName}
-              name={propertyName}
-              component={TextField}
-              hintText={field.placeholder}
-              floatingLabelText={field.title}
-            />
+            <div key={propertyName}>
+              <Field
+                name={propertyName}
+                component={TextField}
+                hintText={field.placeholder}
+                floatingLabelText={field.title}
+              />
+            </div>
           );
         })}
       </form>

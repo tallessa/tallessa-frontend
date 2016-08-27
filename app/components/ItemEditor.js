@@ -8,6 +8,7 @@ import Editor from './Editor';
 import {getItem, createItem, updateItem, deleteItem, newItem} from '../modules/item';
 
 
+// TODO auto-generate schema from DRF
 const schema = {
   type: 'object',
   properties: {
@@ -15,6 +16,13 @@ const schema = {
       type: 'string',
       title: 'Name',
       placeholder: 'Apple iPhone 6 64GB Space Gray',
+      maxLength: 255,
+    },
+    serial_number: {
+      type: 'string',
+      title: 'Serial number',
+      placeholder: 'C00N1234A5BC',
+      maxLength: 255,
     },
   },
 };

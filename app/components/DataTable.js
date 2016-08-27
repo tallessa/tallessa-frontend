@@ -9,6 +9,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import Immutable from 'immutable';
+import {Link} from 'react-router';
 
 import getField from '../helpers/getField';
 
@@ -32,13 +33,16 @@ export default class DataTable extends React.Component {
     this.selectItem = this.selectItem.bind(this);
   }
 
-  selectItem(selectedRows) {
+  selectItem(row, col) {
+    console.log('selectItem', arguments)
     const {onRowSelection, items} = this.props;
-    const selectedIndex = selectedRows[0];
+
+    // Clicking on selection checkbox
+    if (col < 0) return;
 
     if (typeof onRowSelection !== 'undefined') {
-      if (typeof selectedIndex !== 'undefined') {
-        onRowSelection(items.get(selectedIndex));
+      if (typeof row !== 'undefined') {
+        onRowSelection(items.get(row));
       } else {
         onRowSelection(null);
       }
@@ -49,7 +53,7 @@ export default class DataTable extends React.Component {
     const {items, fields, selectedItem} = this.props;
 
     return (
-      <Table onRowSelection={this.selectItem}>
+      <Table multiSelectable>
         <TableHeader>
           <TableRow>
             {fields.map(field => (
@@ -61,7 +65,9 @@ export default class DataTable extends React.Component {
           {items.map(item => (
             <TableRow key={getField(item, 'slug')} selected={Immutable.is(selectedItem, item)}>
               {fields.map(field => (
-                <TableRowColumn key={field.name}>{getField(item, field.name)}</TableRowColumn>
+                <TableRowColumn key={field.name}>
+                  <Link to={`/stuff/${getField(item, 'slug')}`}>{getField(item, field.name)}</Link>
+                </TableRowColumn>
               ))}
             </TableRow>
           ))}
