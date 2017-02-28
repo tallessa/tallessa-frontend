@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+
 const env = process.env.NODE_ENV || 'development';
+const backendUrl = process.env.TALLESSA_BACKEND_URL || 'http://localhost:8000';
 
 
 module.exports = {
@@ -55,7 +57,7 @@ module.exports = {
     hot: true,
     proxy: {
       '/api/*': {
-        target: 'http://localhost:8000',
+        target: backendUrl,
       },
     },
   },

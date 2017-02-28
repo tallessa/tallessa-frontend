@@ -4,11 +4,19 @@
 
 ## Responsive Web Frontend
 
-## Requirements
-
-* Node.js 6.x
-
 ## Getting started
+
+### The Docker Compose Way
+
+There is a single unified Docker Compose development environment for both `tallessa-frontend` (this repository) and `tallessa-backend`. For instructions, see [tallessa-backend](https://github.com/tallessa/tallessa-backend).
+
+### The Traditional Way
+
+Requirements:
+
+* Node.js 7.x (tested: 7.6)
+
+You should get up and running with the following commands:
 
     git clone git@github.com:tallessa/tallessa-frontend
     cd tallessa-frontend
@@ -32,7 +40,7 @@ const
 ## License
 
     Tallessa – Effortless Asset Management (Responsive Web Frontend)
-    Copyright © 2016 Santtu Pajukanta
+    Copyright © 2016–2017 Santtu Pajukanta
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
