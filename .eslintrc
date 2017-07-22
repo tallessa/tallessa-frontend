@@ -13,6 +13,7 @@
     "one-var": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/prefer-stateless-function": "off",
-    "react/require-extension": "off"
+    "react/require-extension": "off",
+    "react/forbid-prop-types": ["off", {}]
   }
 }

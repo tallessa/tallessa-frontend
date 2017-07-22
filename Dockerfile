@@ -3,6 +3,6 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock /usr/src/app/
 RUN yarn install --pure-lockfile && rm -rf /root/.yarn-cache
 COPY . /usr/src/app/
-EXPOSE 8080
+EXPOSE 3000
 
-CMD ["node_modules/.bin/webpack-dev-server", "--host", "0.0.0.0"]
+CMD ["node_modules/.bin/react-scripts", "start"]
